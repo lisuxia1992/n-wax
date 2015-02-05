@@ -198,6 +198,7 @@
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* States_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = States_Prefix.pch; sourceTree = "<group>"; };
+		73270D6B1A83979400849D1D /* wax_stdlib_64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = wax_stdlib_64.h; path = ../../../../lib/wax_stdlib_64.h; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* States-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "States-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -235,6 +236,7 @@
 				04A6186112CA7AB6004ADB76 /* wax_server.h */,
 				04A6186212CA7AB6004ADB76 /* wax_server.m */,
 				04A6186312CA7AB6004ADB76 /* wax_stdlib.h */,
+				73270D6B1A83979400849D1D /* wax_stdlib_64.h */,
 				04A6186412CA7AB6004ADB76 /* wax_struct.h */,
 				04A6186512CA7AB6004ADB76 /* wax_struct.m */,
 			);
@@ -538,6 +540,8 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "States" */;
 			compatibilityVersion = "Xcode 3.1";
 			developmentRegion = English;
@@ -651,6 +655,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -666,6 +671,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = States_Prefix.pch;
