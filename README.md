@@ -6,7 +6,7 @@ Beginning on February 1, 2015 new iOS apps submitted to the App Store must inclu
 ``
 
 The original version of Wax is not compatible with x64 systems, which means that if you use
-wax in your application you'll have to update wax to this fork's version where i've made some hacks to 
+wax in your application you'll have to update it to this fork's version where i've made some hacks to 
 make it compatible with x64 systems.
 
 Wax
