@@ -28,7 +28,7 @@ describe["Packing structs"] = function()
   end
   
   it["can pack a multivalue struct"] = function()
-    local struct = wax.struct.pack("ffff", 1, 2, 3, 4)
+    local struct = wax.struct.pack("dddd",1, 2, 3, 4)
     expect( Structs:expectsCGRectOneTwoThreeFour(struct) ).should_be(true)
   end
   
@@ -58,7 +58,7 @@ describe["Creating structs"] = function()
   end
 
   it["reads existing structs by obj-c correctly"] = function()
-    wax.struct.create("CGRect", "ffff", "x", "y", "width", "height")
+    wax.struct.create("CGRect", "dddd", "x", "y", "width", "height")
     expect( Structs:expectsCGRectTwoFourSixEight(CGRect(2,4,6,8)) ).should_be(true)
   end
 end

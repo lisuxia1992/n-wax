@@ -56,6 +56,7 @@
 		043D10E012C92D6700775F70 /* wax_instance.m in Sources */ = {isa = PBXBuildFile; fileRef = 043D107712C92D6700775F70 /* wax_instance.m */; };
 		043D10E212C92D6700775F70 /* wax_server.m in Sources */ = {isa = PBXBuildFile; fileRef = 043D107912C92D6700775F70 /* wax_server.m */; };
 		043D10E512C92D6700775F70 /* wax_struct.m in Sources */ = {isa = PBXBuildFile; fileRef = 043D107C12C92D6700775F70 /* wax_struct.m */; };
+		73270D701A844F2B00849D1D /* wax_stdlib_64.h in Headers */ = {isa = PBXBuildFile; fileRef = 73270D6F1A844F2B00849D1D /* wax_stdlib_64.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -183,6 +184,7 @@
 		043D107A12C92D6700775F70 /* wax_stdlib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wax_stdlib.h; sourceTree = "<group>"; };
 		043D107B12C92D6700775F70 /* wax_struct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wax_struct.h; sourceTree = "<group>"; };
 		043D107C12C92D6700775F70 /* wax_struct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = wax_struct.m; sourceTree = "<group>"; };
+		73270D6F1A844F2B00849D1D /* wax_stdlib_64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = wax_stdlib_64.h; path = ../../../../lib/wax_stdlib_64.h; sourceTree = "<group>"; };
 		AA747D9E0F9514B9006C5449 /* Framework_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Framework_Prefix.pch; sourceTree = SOURCE_ROOT; };
 		D2AAC07E0554694100DB518D /* libwax.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libwax.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -216,6 +218,7 @@
 				043D107812C92D6700775F70 /* wax_server.h */,
 				043D107912C92D6700775F70 /* wax_server.m */,
 				043D107A12C92D6700775F70 /* wax_stdlib.h */,
+				73270D6F1A844F2B00849D1D /* wax_stdlib_64.h */,
 				043D107B12C92D6700775F70 /* wax_struct.h */,
 				043D107C12C92D6700775F70 /* wax_struct.m */,
 			);
@@ -465,6 +468,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				73270D701A844F2B00849D1D /* wax_stdlib_64.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -493,6 +497,8 @@
 /* Begin PBXProject section */
 		0867D690FE84028FC02AAC07 /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+			};
 			buildConfigurationList = 1DEB922208733DC00010E9CD /* Build configuration list for PBXProject "Framework" */;
 			compatibilityVersion = "Xcode 3.1";
 			developmentRegion = English;
@@ -595,7 +601,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				COPY_PHASE_STRIP = NO;
 				DSTROOT = /tmp/Framework.dst;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -615,7 +621,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				DSTROOT = /tmp/Framework.dst;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
