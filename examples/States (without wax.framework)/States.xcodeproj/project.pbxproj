@@ -664,6 +664,7 @@
 				HEADER_SEARCH_PATHS = "$(SDK_ROOT)/usr/include/libxml2";
 				INFOPLIST_FILE = "States-Info.plist";
 				PRODUCT_NAME = States;
+				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Debug;
 		};
@@ -679,6 +680,7 @@
 				INFOPLIST_FILE = "States-Info.plist";
 				PRODUCT_NAME = States;
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Release;
 		};
