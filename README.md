@@ -1,3 +1,64 @@
+The Problem
+-----------
+```
+#define WAX_METHOD(_type_) \
+static _type_ WAX_METHOD_NAME(_type_)(id self, SEL _cmd, ...) { \
+va_list args; \
+va_start(args, _cmd); \
+va_list args_copy; \
+va_copy(args_copy, args); \
+/* Grab the static L... this is a hack */ \
+lua_State *L = wax_currentLuaState(); \
+BEGIN_STACK_MODIFY(L); \
+int result = pcallUserdata(L, self, _cmd, args_copy); \
+va_end(args_copy); \
+va_end(args); \
+if (result == -1) { \
+    luaL_error(L, "Error calling '%s' on '%s'\n%s", _cmd, [[self description] UTF8String], lua_tostring(L, -1)); \
+} \
+else if (result == 0) { \
+    _type_ returnValue; \
+    bzero(&returnValue, sizeof(_type_)); \
+    END_STACK_MODIFY(L, 0) \
+    return returnValue; \
+} \
+\
+NSMethodSignature *signature = [self methodSignatureForSelector:_cmd]; \
+_type_ *pReturnValue = (_type_ *)wax_copyToObjc(L, [signature methodReturnType], -1, nil); \
+_type_ returnValue = *pReturnValue; \
+free(pReturnValue); \
+END_STACK_MODIFY(L, 0) \
+return returnValue; \
+}
+```
+
+This method above is the problem, more specifically this snippet:
+```
+va_list args; \
+va_start(args, _cmd); \
+va_list args_copy; \
+va_copy(args_copy, args); \
+/* Grab the static L... this is a hack */ \
+lua_State *L = wax_currentLuaState(); \
+BEGIN_STACK_MODIFY(L); \
+int result = pcallUserdata(L, self, _cmd, args_copy); \
+```
+
+va_start(args, _cmd); \
+
+After this line, args was supposed to contain a pointer pointing to the top of the stack, directly to the args of the invocation, this happens under armv7 and armv7s archs, but not in armv64 unfortunatelly, apple messed out with it maybe... The problem is later, in pcallUserdata:
+
+```
+for (int i = 2; i < [signature numberOfArguments]; i++) { // start at 2 because to skip the automatic self and _cmd arugments
+        const char *type = [signature getArgumentTypeAtIndex:i];
+        int size = wax_fromObjc(L, type, args);
+        args += size; // HACK! Since va_arg requires static type, I manually increment the args
+    }
+```
+
+this snippet was supposed to receive a pointer to the argument list from the other method so that it could iterate on it and grab the arguments one by one, but this is not happening, I'm trying to debug and find a deterministic behaviour to va_start, sometimes I can get the arguments by pointing to args-24 and them read then backwards, args-32 and so on, sometimes no, does anyone know how to use va_list and va_start successfully in apple's arm64 arch? Or maybe have any ideas for changing the way we grab the args? The patch I've made is working in the x64 simulator, but not on devices.
+
+
 Wax X86_64
 ----------
 Apple:
