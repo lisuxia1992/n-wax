@@ -563,7 +563,6 @@ static int customInitMethodClosure(lua_State *L) {
 void myForwardInvocation(id self, SEL _cmd, NSInvocation * inv){
     NSInteger n = [[inv methodSignature] numberOfArguments];
     void **arguements = calloc(sizeof(void*), n);
-    id *idArguements = calloc(sizeof(id*), n);
     
     for (int i = 0; i < n-2; i++) {
         id __unsafe_unretained arg;
@@ -571,13 +570,9 @@ void myForwardInvocation(id self, SEL _cmd, NSInvocation * inv){
         if(!arg){
             arg = [NSNull null];
         }
-        idArguements[i] = arg;
+        arguements[i] = arg;
     }
     
-    for(int i = 0 ; i < n-2 ; i++){
-        arguements[i] = &idArguements[i];
-    }
-
     //HACK
     const char *selectorName = sel_getName([inv selector]);
     char newWaxSelectorName[strlen(selectorName) + 10];
@@ -585,11 +580,21 @@ void myForwardInvocation(id self, SEL _cmd, NSInvocation * inv){
     strcat(newWaxSelectorName, selectorName);
     
     SEL newWaxSelector = sel_getUid(newWaxSelectorName);
+    
     if(class_respondsToSelector([[inv target] class], newWaxSelector)) {
         [inv setSelector:newWaxSelector];
+        [inv setArgument:arguements atIndex:2];
+        [inv invoke];
+    }else{
+        //TODO: Test this!
+        const char *forwardSelectorName = sel_getName(@selector(forwardInvocation:));
+        char newForwardSelectorName[strlen(forwardSelectorName) + 10];
+        strcpy(newForwardSelectorName, "ORIG");
+        strcat(newForwardSelectorName, forwardSelectorName);
+        SEL origForwardSelector = sel_getUid(newForwardSelectorName);
+        [inv setSelector:origForwardSelector];
+        [inv invoke];
     }
-    [inv setArgument:arguements atIndex:2];
-    [inv invoke];
 }
 
 
@@ -810,10 +815,10 @@ static BOOL overrideMethod(lua_State *L, wax_instance_userdata *instanceUserdata
         IMP metaImp = class_respondsToSelector(metaclass, selector) ? class_getMethodImplementation(metaclass, selector) : NULL;
         if(instImp) {
             // original selector is reserved in ORIGxxxx
-            //Strong HACK!!! I can't stress enought how hacky this is! I'm removing the original method implementation so that when it is called, the call gets forwarded by mine myForwardInvocation
+            //Strong HACK!!! I can't stress enough how hacky this is! I'm removing the original method implementation so that when it is called, the call gets forwarded by mine myForwardInvocation
             IMP prevImp = class_replaceMethod(klass, selector, class_getMethodImplementation(klass, @selector(testesss)), typeDescription);
             //TODO keep original forwardinvocation and call it!
-            IMP otherImp = class_replaceMethod(klass, @selector(forwardInvocation:), (IMP)myForwardInvocation, "v@:@");
+            IMP forwardInvocationOriginalImp = class_replaceMethod(klass, @selector(forwardInvocation:), (IMP)myForwardInvocation, "v@:@");
             const char *selectorName = sel_getName(selector);
             //New
             char newWaxSelectorName[strlen(selectorName) + 10];
@@ -827,6 +832,17 @@ static BOOL overrideMethod(lua_State *L, wax_instance_userdata *instanceUserdata
             if(!class_respondsToSelector(klass, newSelector)) {
                 class_addMethod(klass, newSelector, prevImp, typeDescription);
             }
+            
+            //Put the original invocation method
+            const char *forwardSelectorName = sel_getName(@selector(forwardInvocation:));
+            char newForwardSelectorName[strlen(forwardSelectorName) + 10];
+            strcpy(newForwardSelectorName, "ORIG");
+            strcat(newForwardSelectorName, forwardSelectorName);
+            SEL newForwardSelector = sel_getUid(newForwardSelectorName);
+            if(!class_respondsToSelector(metaclass, newForwardSelector)) {
+                class_addMethod(metaclass, newForwardSelector, forwardInvocationOriginalImp, "v@:@");
+            }
+            
             //New
             SEL newWaxSelector = sel_getUid(newWaxSelectorName);
             if(!class_respondsToSelector(klass, newWaxSelector)) {
@@ -834,8 +850,9 @@ static BOOL overrideMethod(lua_State *L, wax_instance_userdata *instanceUserdata
             }
             success = YES;
         } else if(metaImp) {
+            //Strong HACK!!! I can't stress enough how hacky this is! I'm removing the original method implementation so that when it is called, the call gets forwarded by mine myForwardInvocation
             IMP prevImp = class_replaceMethod(klass, selector, class_getMethodImplementation(klass, @selector(testesss)), typeDescription);
-            IMP otherImp = class_replaceMethod(klass, @selector(forwardInvocation:), (IMP)myForwardInvocation, "v@:@");
+            IMP forwardInvocationOriginalImp = class_replaceMethod(klass, @selector(forwardInvocation:), (IMP)myForwardInvocation, "v@:@");
             const char *selectorName = sel_getName(selector);
 
             char newWaxSelectorName[strlen(selectorName) + 10];
@@ -849,7 +866,17 @@ static BOOL overrideMethod(lua_State *L, wax_instance_userdata *instanceUserdata
             if(!class_respondsToSelector(metaclass, newSelector)) {
                 class_addMethod(metaclass, newSelector, prevImp, typeDescription);
             }
-
+            
+            //Put the original invocation method
+            const char *forwardSelectorName = sel_getName(@selector(forwardInvocation:));
+            char newForwardSelectorName[strlen(forwardSelectorName) + 10];
+            strcpy(newForwardSelectorName, "ORIG");
+            strcat(newForwardSelectorName, forwardSelectorName);
+            SEL newForwardSelector = sel_getUid(newForwardSelectorName);
+            if(!class_respondsToSelector(metaclass, newForwardSelector)) {
+                class_addMethod(metaclass, newForwardSelector, forwardInvocationOriginalImp, "v@:@");
+            }
+            
             SEL newWaxSelector = sel_getUid(newWaxSelectorName);
             if(!class_respondsToSelector(klass, newWaxSelector)) {
                 class_addMethod(klass, newWaxSelector, imp, typeDescription);
