@@ -637,7 +637,8 @@ static int pcallUserdata(lua_State *L, id self, SEL selector, void ** args) {
     
     for (int i = 2; i < [signature numberOfArguments]; i++) { // start at 2 because to skip the automatic self and _cmd arugments
         const char *type = [signature getArgumentTypeAtIndex:i];
-        wax_fromObjc(L, type, &args[i-2]);
+        int size = wax_fromObjc(L, type, &args);
+        args+=size;
     }
     
     if (wax_pcall(L, nargs, nresults)) { // Userdata will allways be the first object sent to the function  
