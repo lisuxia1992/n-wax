@@ -598,10 +598,6 @@ void myForwardInvocation(id self, SEL _cmd, NSInvocation * inv){
         [inv setSelector:origForwardSelector];
         [inv invoke];
     }
-    for (int i = 0; i < n-2; i++) {
-        free(sharedMemoryForArgs[i]);
-    }
-    free(sharedMemoryForArgs);
 }
 
 
