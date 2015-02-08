@@ -31,6 +31,7 @@ static BOOL overrideMethod(lua_State *L, wax_instance_userdata *instanceUserdata
 static int pcallUserdata(lua_State *L, id self, SEL selector);
 
 void ** sharedMemoryForArgs;
+int sharedMemoryNArgs;
 
 static const struct luaL_Reg metaFunctions[] = {
     {"__index", __index},
@@ -564,7 +565,16 @@ static int customInitMethodClosure(lua_State *L) {
 
 void myForwardInvocation(id self, SEL _cmd, NSInvocation * inv){
     NSInteger n = [[inv methodSignature] numberOfArguments];
-    sharedMemoryForArgs = calloc(sizeof(void *), n);
+    if(sharedMemoryNArgs>0 && sharedMemoryForArgs){
+        for(int i = 0 ; i < sharedMemoryNArgs; i++){
+            if(sharedMemoryForArgs[i]){
+                free(sharedMemoryForArgs[i]);
+            }
+        }
+        free(sharedMemoryForArgs);
+    }
+    sharedMemoryNArgs = (int)n-2;
+    sharedMemoryForArgs = calloc(sizeof(void *), n-2);
     void * value = nil;
     for (int i = 0; i < n-2; i++) {
         id __unsafe_unretained arg;
@@ -599,7 +609,6 @@ void myForwardInvocation(id self, SEL _cmd, NSInvocation * inv){
         [inv invoke];
     }
 }
-
 
 #pragma mark Override Methods
 #pragma mark ---------------------
