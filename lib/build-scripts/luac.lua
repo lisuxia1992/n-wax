@@ -55,10 +55,10 @@ end
 b = string.dump(assert(loadstring(b, NAME)))
 local x, y = string.find(b, MARK)
 -- 64
---b = string.sub(b, 1, x - 6 - 4).."\0"..string.sub(b, y + 2, y + 5) -- WTF does this do?
+b = string.sub(b, 1, x - 6 - 4).."\0"..string.sub(b, y + 2, y + 5) -- WTF does this do?
 
 -- 32
-b = string.sub(b, 1, x - 6).."\0"..string.sub(b, y + 2, y + 5) -- WTF does this do?
+--b = string.sub(b, 1, x - 6).."\0"..string.sub(b, y + 2, y + 5) -- WTF does this do?
 
 f = assert(io.open(OUTPUT, "wb"))
 
@@ -73,8 +73,8 @@ for i=1,executableIndex do
 end
 
 -- 64
---assert(f:write(string.rep("\0", 3 * 8)))
+assert(f:write(string.rep("\0", 3 * 8)))
 
 -- 32
-assert(f:write(string.rep("\0", 12)))
+--assert(f:write(string.rep("\0", 12)))
 assert(f:close())
