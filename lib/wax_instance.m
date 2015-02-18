@@ -590,22 +590,13 @@ void myForwardInvocation(id self, SEL _cmd, NSInvocation * inv){
     //HACK
     const char *selectorName = sel_getName([inv selector]);
     char newWaxSelectorName[strlen(selectorName) + 10];
-    strcpy(newWaxSelectorName, "WAX");
+    strcpy(newWaxSelectorName, "WX");
     strcat(newWaxSelectorName, selectorName);
     
     SEL newWaxSelector = sel_getUid(newWaxSelectorName);
     
     if(class_respondsToSelector([[inv target] class], newWaxSelector)) {
         [inv setSelector:newWaxSelector];
-        [inv invoke];
-    }else{
-        //TODO: Test this!
-        const char *forwardSelectorName = sel_getName(@selector(forwardInvocation:));
-        char newForwardSelectorName[strlen(forwardSelectorName) + 10];
-        strcpy(newForwardSelectorName, "ORIG");
-        strcat(newForwardSelectorName, forwardSelectorName);
-        SEL origForwardSelector = sel_getUid(newForwardSelectorName);
-        [inv setSelector:origForwardSelector];
         [inv invoke];
     }
 }
@@ -719,20 +710,13 @@ static BOOL overrideMethod(lua_State *L, wax_instance_userdata *instanceUserdata
     
     Class klass = [instanceUserdata->instance class];
     
-    const char *forwardSelectorName = sel_getName(@selector(forwardInvocation:));
-    char newForwardSelectorName[strlen(forwardSelectorName) + 10];
-    strcpy(newForwardSelectorName, "ORIG");
-    strcat(newForwardSelectorName, forwardSelectorName);
-    SEL newForwardSelector = sel_getUid(newForwardSelectorName);
-    if(!class_getClassMethod(klass, newForwardSelector)){
-        IMP forwardInvocationOriginalImp = class_replaceMethod(klass, @selector(forwardInvocation:), (IMP)myForwardInvocation, "v@:@");
-        class_addMethod(klass, newForwardSelector, forwardInvocationOriginalImp, "v@:@");
+    if(!class_getClassMethod(klass, @selector(ORIGforwardInvocation:))){
+        class_replaceMethod(klass, @selector(forwardInvocation:), (IMP)myForwardInvocation, "v@:@");
     }
     
     id metaclass = objc_getMetaClass(object_getClassName(klass));
-    if(!class_getClassMethod(metaclass, newForwardSelector)){
-        IMP forwardInvocationOriginalImp = class_replaceMethod(metaclass, @selector(forwardInvocation:), (IMP)myForwardInvocation, "v@:@");
-        class_addMethod(metaclass, newForwardSelector, forwardInvocationOriginalImp, "v@:@");
+    if(!class_getClassMethod(metaclass, @selector(ORIGforwardInvocation:))){
+        class_replaceMethod(metaclass, @selector(forwardInvocation:), (IMP)myForwardInvocation, "v@:@");
     }
 
     
