@@ -1,5 +1,5 @@
-Wax X86_64
-----------
+Wax for armv7/arm64
+-------------------
 Apple:
 ``
 Beginning on February 1, 2015 new iOS apps submitted to the App Store must include 64-bit support and be built with the iOS 8 SDK. Beginning June 1, 2015 app updates will also need to follow the same requirements. To enable 64-bit in your project, we recommend using the default Xcode build setting of “Standard architectures” to build a single binary with both 32-bit and 64-bit code.
