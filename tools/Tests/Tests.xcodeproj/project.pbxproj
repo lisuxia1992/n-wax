@@ -64,6 +64,24 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
+		73E2E5401A95056E006CD8B3 /* WaxFFIClosure.m in Sources */ = {isa = PBXBuildFile; fileRef = 73E2E53F1A95056E006CD8B3 /* WaxFFIClosure.m */; };
+		73E2E56C1A950588006CD8B3 /* closures.c in Sources */ = {isa = PBXBuildFile; fileRef = 73E2E5491A950588006CD8B3 /* closures.c */; };
+		73E2E56D1A950588006CD8B3 /* debug.c in Sources */ = {isa = PBXBuildFile; fileRef = 73E2E54A1A950588006CD8B3 /* debug.c */; };
+		73E2E56E1A950588006CD8B3 /* dlmalloc.c in Sources */ = {isa = PBXBuildFile; fileRef = 73E2E54B1A950588006CD8B3 /* dlmalloc.c */; };
+		73E2E56F1A950588006CD8B3 /* java_raw_api.c in Sources */ = {isa = PBXBuildFile; fileRef = 73E2E54C1A950588006CD8B3 /* java_raw_api.c */; };
+		73E2E5701A950588006CD8B3 /* prep_cif.c in Sources */ = {isa = PBXBuildFile; fileRef = 73E2E54D1A950588006CD8B3 /* prep_cif.c */; };
+		73E2E5711A950588006CD8B3 /* raw_api.c in Sources */ = {isa = PBXBuildFile; fileRef = 73E2E54E1A950588006CD8B3 /* raw_api.c */; };
+		73E2E5721A950588006CD8B3 /* types.c in Sources */ = {isa = PBXBuildFile; fileRef = 73E2E54F1A950588006CD8B3 /* types.c */; };
+		73E2E5731A950588006CD8B3 /* ffi_arm64.c in Sources */ = {isa = PBXBuildFile; fileRef = 73E2E5601A950588006CD8B3 /* ffi_arm64.c */; };
+		73E2E5741A950588006CD8B3 /* sysv_arm64.S in Sources */ = {isa = PBXBuildFile; fileRef = 73E2E5611A950588006CD8B3 /* sysv_arm64.S */; };
+		73E2E5751A950588006CD8B3 /* ffi_armv7.c in Sources */ = {isa = PBXBuildFile; fileRef = 73E2E5631A950588006CD8B3 /* ffi_armv7.c */; };
+		73E2E5761A950588006CD8B3 /* sysv_armv7.S in Sources */ = {isa = PBXBuildFile; fileRef = 73E2E5641A950588006CD8B3 /* sysv_armv7.S */; };
+		73E2E5771A950588006CD8B3 /* trampoline_armv7.S in Sources */ = {isa = PBXBuildFile; fileRef = 73E2E5651A950588006CD8B3 /* trampoline_armv7.S */; };
+		73E2E5781A950588006CD8B3 /* darwin64_x86_64.S in Sources */ = {isa = PBXBuildFile; fileRef = 73E2E5671A950588006CD8B3 /* darwin64_x86_64.S */; };
+		73E2E5791A950588006CD8B3 /* darwin_i386.S in Sources */ = {isa = PBXBuildFile; fileRef = 73E2E5681A950588006CD8B3 /* darwin_i386.S */; };
+		73E2E57A1A950588006CD8B3 /* ffi64_x86_64.c in Sources */ = {isa = PBXBuildFile; fileRef = 73E2E5691A950588006CD8B3 /* ffi64_x86_64.c */; };
+		73E2E57B1A950588006CD8B3 /* ffi_i386.c in Sources */ = {isa = PBXBuildFile; fileRef = 73E2E56A1A950588006CD8B3 /* ffi_i386.c */; };
+		73E2E57C1A950588006CD8B3 /* win32_i386.S in Sources */ = {isa = PBXBuildFile; fileRef = 73E2E56B1A950588006CD8B3 /* win32_i386.S */; };
 		91373B241066B2B30089FEE3 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 91373B231066B2B30089FEE3 /* Entitlements.plist */; };
 		91373BF01066C8930089FEE3 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 91373BEF1066C8930089FEE3 /* Icon.png */; };
 /* End PBXBuildFile section */
@@ -197,6 +215,41 @@
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* Tests_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tests_Prefix.pch; sourceTree = "<group>"; };
+		73E2E53E1A95056E006CD8B3 /* WaxFFIClosure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WaxFFIClosure.h; path = ../../../../lib/WaxFFIClosure.h; sourceTree = "<group>"; };
+		73E2E53F1A95056E006CD8B3 /* WaxFFIClosure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WaxFFIClosure.m; path = ../../../../lib/WaxFFIClosure.m; sourceTree = "<group>"; };
+		73E2E5441A950588006CD8B3 /* ffi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffi.h; sourceTree = "<group>"; };
+		73E2E5451A950588006CD8B3 /* ffi_common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffi_common.h; sourceTree = "<group>"; };
+		73E2E5461A950588006CD8B3 /* fficonfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fficonfig.h; sourceTree = "<group>"; };
+		73E2E5471A950588006CD8B3 /* ffitarget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffitarget.h; sourceTree = "<group>"; };
+		73E2E5491A950588006CD8B3 /* closures.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = closures.c; sourceTree = "<group>"; };
+		73E2E54A1A950588006CD8B3 /* debug.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = debug.c; sourceTree = "<group>"; };
+		73E2E54B1A950588006CD8B3 /* dlmalloc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dlmalloc.c; sourceTree = "<group>"; };
+		73E2E54C1A950588006CD8B3 /* java_raw_api.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = java_raw_api.c; sourceTree = "<group>"; };
+		73E2E54D1A950588006CD8B3 /* prep_cif.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = prep_cif.c; sourceTree = "<group>"; };
+		73E2E54E1A950588006CD8B3 /* raw_api.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = raw_api.c; sourceTree = "<group>"; };
+		73E2E54F1A950588006CD8B3 /* types.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = types.c; sourceTree = "<group>"; };
+		73E2E5521A950588006CD8B3 /* ffi_arm64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffi_arm64.h; sourceTree = "<group>"; };
+		73E2E5531A950588006CD8B3 /* ffi_armv7.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffi_armv7.h; sourceTree = "<group>"; };
+		73E2E5541A950588006CD8B3 /* ffi_i386.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffi_i386.h; sourceTree = "<group>"; };
+		73E2E5551A950588006CD8B3 /* ffi_x86_64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffi_x86_64.h; sourceTree = "<group>"; };
+		73E2E5561A950588006CD8B3 /* fficonfig_arm64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fficonfig_arm64.h; sourceTree = "<group>"; };
+		73E2E5571A950588006CD8B3 /* fficonfig_armv7.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fficonfig_armv7.h; sourceTree = "<group>"; };
+		73E2E5581A950588006CD8B3 /* fficonfig_i386.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fficonfig_i386.h; sourceTree = "<group>"; };
+		73E2E5591A950588006CD8B3 /* fficonfig_x86_64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fficonfig_x86_64.h; sourceTree = "<group>"; };
+		73E2E55A1A950588006CD8B3 /* ffitarget_arm64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffitarget_arm64.h; sourceTree = "<group>"; };
+		73E2E55B1A950588006CD8B3 /* ffitarget_armv7.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffitarget_armv7.h; sourceTree = "<group>"; };
+		73E2E55C1A950588006CD8B3 /* ffitarget_i386.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffitarget_i386.h; sourceTree = "<group>"; };
+		73E2E55D1A950588006CD8B3 /* ffitarget_x86_64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffitarget_x86_64.h; sourceTree = "<group>"; };
+		73E2E5601A950588006CD8B3 /* ffi_arm64.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ffi_arm64.c; sourceTree = "<group>"; };
+		73E2E5611A950588006CD8B3 /* sysv_arm64.S */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = sysv_arm64.S; sourceTree = "<group>"; };
+		73E2E5631A950588006CD8B3 /* ffi_armv7.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ffi_armv7.c; sourceTree = "<group>"; };
+		73E2E5641A950588006CD8B3 /* sysv_armv7.S */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = sysv_armv7.S; sourceTree = "<group>"; };
+		73E2E5651A950588006CD8B3 /* trampoline_armv7.S */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = trampoline_armv7.S; sourceTree = "<group>"; };
+		73E2E5671A950588006CD8B3 /* darwin64_x86_64.S */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = darwin64_x86_64.S; sourceTree = "<group>"; };
+		73E2E5681A950588006CD8B3 /* darwin_i386.S */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = darwin_i386.S; sourceTree = "<group>"; };
+		73E2E5691A950588006CD8B3 /* ffi64_x86_64.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ffi64_x86_64.c; sourceTree = "<group>"; };
+		73E2E56A1A950588006CD8B3 /* ffi_i386.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ffi_i386.c; sourceTree = "<group>"; };
+		73E2E56B1A950588006CD8B3 /* win32_i386.S */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = win32_i386.S; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Tests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		91373B231066B2B30089FEE3 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		91373BEF1066C8930089FEE3 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
@@ -237,6 +290,8 @@
 				0413C06F1200C9960069C579 /* wax_server.m */,
 				043E6150113C3DA5007A6104 /* wax_struct.h */,
 				043E6151113C3DA5007A6104 /* wax_struct.m */,
+				73E2E53E1A95056E006CD8B3 /* WaxFFIClosure.h */,
+				73E2E53F1A95056E006CD8B3 /* WaxFFIClosure.m */,
 			);
 			name = wax;
 			path = wax/lib;
@@ -417,6 +472,7 @@
 			isa = PBXGroup;
 			children = (
 				29B97316FDCFA39411CA2CEA /* main.m */,
+				73E2E5411A950588006CD8B3 /* libffi */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				043E60C6113C3DA5007A6104 /* wax */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -454,6 +510,119 @@
 				288765FC0DF74451002DB57D /* CoreGraphics.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		73E2E5411A950588006CD8B3 /* libffi */ = {
+			isa = PBXGroup;
+			children = (
+				73E2E5421A950588006CD8B3 /* darwin_common */,
+				73E2E5501A950588006CD8B3 /* darwin_ios */,
+			);
+			name = libffi;
+			path = ../../lib/libffi;
+			sourceTree = "<group>";
+		};
+		73E2E5421A950588006CD8B3 /* darwin_common */ = {
+			isa = PBXGroup;
+			children = (
+				73E2E5431A950588006CD8B3 /* include */,
+				73E2E5481A950588006CD8B3 /* src */,
+			);
+			path = darwin_common;
+			sourceTree = "<group>";
+		};
+		73E2E5431A950588006CD8B3 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				73E2E5441A950588006CD8B3 /* ffi.h */,
+				73E2E5451A950588006CD8B3 /* ffi_common.h */,
+				73E2E5461A950588006CD8B3 /* fficonfig.h */,
+				73E2E5471A950588006CD8B3 /* ffitarget.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		73E2E5481A950588006CD8B3 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				73E2E5491A950588006CD8B3 /* closures.c */,
+				73E2E54A1A950588006CD8B3 /* debug.c */,
+				73E2E54B1A950588006CD8B3 /* dlmalloc.c */,
+				73E2E54C1A950588006CD8B3 /* java_raw_api.c */,
+				73E2E54D1A950588006CD8B3 /* prep_cif.c */,
+				73E2E54E1A950588006CD8B3 /* raw_api.c */,
+				73E2E54F1A950588006CD8B3 /* types.c */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		73E2E5501A950588006CD8B3 /* darwin_ios */ = {
+			isa = PBXGroup;
+			children = (
+				73E2E5511A950588006CD8B3 /* include */,
+				73E2E55E1A950588006CD8B3 /* src */,
+			);
+			path = darwin_ios;
+			sourceTree = "<group>";
+		};
+		73E2E5511A950588006CD8B3 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				73E2E5521A950588006CD8B3 /* ffi_arm64.h */,
+				73E2E5531A950588006CD8B3 /* ffi_armv7.h */,
+				73E2E5541A950588006CD8B3 /* ffi_i386.h */,
+				73E2E5551A950588006CD8B3 /* ffi_x86_64.h */,
+				73E2E5561A950588006CD8B3 /* fficonfig_arm64.h */,
+				73E2E5571A950588006CD8B3 /* fficonfig_armv7.h */,
+				73E2E5581A950588006CD8B3 /* fficonfig_i386.h */,
+				73E2E5591A950588006CD8B3 /* fficonfig_x86_64.h */,
+				73E2E55A1A950588006CD8B3 /* ffitarget_arm64.h */,
+				73E2E55B1A950588006CD8B3 /* ffitarget_armv7.h */,
+				73E2E55C1A950588006CD8B3 /* ffitarget_i386.h */,
+				73E2E55D1A950588006CD8B3 /* ffitarget_x86_64.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		73E2E55E1A950588006CD8B3 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				73E2E55F1A950588006CD8B3 /* aarch64 */,
+				73E2E5621A950588006CD8B3 /* arm */,
+				73E2E5661A950588006CD8B3 /* x86 */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		73E2E55F1A950588006CD8B3 /* aarch64 */ = {
+			isa = PBXGroup;
+			children = (
+				73E2E5601A950588006CD8B3 /* ffi_arm64.c */,
+				73E2E5611A950588006CD8B3 /* sysv_arm64.S */,
+			);
+			path = aarch64;
+			sourceTree = "<group>";
+		};
+		73E2E5621A950588006CD8B3 /* arm */ = {
+			isa = PBXGroup;
+			children = (
+				73E2E5631A950588006CD8B3 /* ffi_armv7.c */,
+				73E2E5641A950588006CD8B3 /* sysv_armv7.S */,
+				73E2E5651A950588006CD8B3 /* trampoline_armv7.S */,
+			);
+			path = arm;
+			sourceTree = "<group>";
+		};
+		73E2E5661A950588006CD8B3 /* x86 */ = {
+			isa = PBXGroup;
+			children = (
+				73E2E5671A950588006CD8B3 /* darwin64_x86_64.S */,
+				73E2E5681A950588006CD8B3 /* darwin_i386.S */,
+				73E2E5691A950588006CD8B3 /* ffi64_x86_64.c */,
+				73E2E56A1A950588006CD8B3 /* ffi_i386.c */,
+				73E2E56B1A950588006CD8B3 /* win32_i386.S */,
+			);
+			path = x86;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -540,10 +709,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
+				73E2E5741A950588006CD8B3 /* sysv_arm64.S in Sources */,
 				043E6158113C3DA5007A6104 /* wax_http.m in Sources */,
 				043E6159113C3DA5007A6104 /* wax_http_connection.m in Sources */,
+				73E2E56F1A950588006CD8B3 /* java_raw_api.c in Sources */,
 				043E615B113C3DA5007A6104 /* wax_json.c in Sources */,
 				043E615D113C3DA5007A6104 /* yajl.c in Sources */,
+				73E2E5401A95056E006CD8B3 /* WaxFFIClosure.m in Sources */,
+				73E2E56D1A950588006CD8B3 /* debug.c in Sources */,
+				73E2E5781A950588006CD8B3 /* darwin64_x86_64.S in Sources */,
 				043E615E113C3DA5007A6104 /* yajl_alloc.c in Sources */,
 				043E615F113C3DA5007A6104 /* yajl_buf.c in Sources */,
 				043E6160113C3DA5007A6104 /* yajl_encode.c in Sources */,
@@ -560,6 +734,8 @@
 				043E616E113C3DA5007A6104 /* ldo.c in Sources */,
 				043E616F113C3DA5007A6104 /* ldump.c in Sources */,
 				043E6170113C3DA5007A6104 /* lfunc.c in Sources */,
+				73E2E5751A950588006CD8B3 /* ffi_armv7.c in Sources */,
+				73E2E5791A950588006CD8B3 /* darwin_i386.S in Sources */,
 				043E6171113C3DA5007A6104 /* lgc.c in Sources */,
 				043E6172113C3DA5007A6104 /* linit.c in Sources */,
 				043E6173113C3DA5007A6104 /* liolib.c in Sources */,
@@ -567,24 +743,35 @@
 				043E6175113C3DA5007A6104 /* lmathlib.c in Sources */,
 				043E6176113C3DA5007A6104 /* lmem.c in Sources */,
 				043E6177113C3DA5007A6104 /* loadlib.c in Sources */,
+				73E2E56C1A950588006CD8B3 /* closures.c in Sources */,
 				043E6178113C3DA5007A6104 /* lobject.c in Sources */,
+				73E2E5721A950588006CD8B3 /* types.c in Sources */,
 				043E6179113C3DA5007A6104 /* lopcodes.c in Sources */,
 				043E617A113C3DA5007A6104 /* loslib.c in Sources */,
+				73E2E5701A950588006CD8B3 /* prep_cif.c in Sources */,
 				043E617B113C3DA5007A6104 /* lparser.c in Sources */,
+				73E2E56E1A950588006CD8B3 /* dlmalloc.c in Sources */,
 				043E617C113C3DA5007A6104 /* lstate.c in Sources */,
+				73E2E57A1A950588006CD8B3 /* ffi64_x86_64.c in Sources */,
 				043E617D113C3DA5007A6104 /* lstring.c in Sources */,
 				043E617E113C3DA5007A6104 /* lstrlib.c in Sources */,
+				73E2E57B1A950588006CD8B3 /* ffi_i386.c in Sources */,
 				043E617F113C3DA5007A6104 /* ltable.c in Sources */,
 				043E6180113C3DA5007A6104 /* ltablib.c in Sources */,
+				73E2E5761A950588006CD8B3 /* sysv_armv7.S in Sources */,
+				73E2E57C1A950588006CD8B3 /* win32_i386.S in Sources */,
 				043E6181113C3DA5007A6104 /* ltm.c in Sources */,
+				73E2E5711A950588006CD8B3 /* raw_api.c in Sources */,
 				043E6182113C3DA5007A6104 /* lundump.c in Sources */,
 				043E6183113C3DA5007A6104 /* lvm.c in Sources */,
 				043E6184113C3DA5007A6104 /* lzio.c in Sources */,
 				043E6185113C3DA5007A6104 /* print.c in Sources */,
 				043E6196113C3DA5007A6104 /* wax.m in Sources */,
+				73E2E5771A950588006CD8B3 /* trampoline_armv7.S in Sources */,
 				043E6197113C3DA5007A6104 /* wax_class.m in Sources */,
 				043E6199113C3DA5007A6104 /* wax_helpers.m in Sources */,
 				043E619A113C3DA5007A6104 /* wax_instance.m in Sources */,
+				73E2E5731A950588006CD8B3 /* ffi_arm64.c in Sources */,
 				043E619B113C3DA5007A6104 /* wax_struct.m in Sources */,
 				04D22AA3113EEB48000F7048 /* SimpleDelegateObject.m in Sources */,
 				04D22AA4113EEB48000F7048 /* SimpleObject.m in Sources */,
@@ -600,7 +787,7 @@
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ARCHS = "$(ARCHS_STANDARD)";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
@@ -618,6 +805,7 @@
 				PRODUCT_NAME = Tests;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
+				USER_HEADER_SEARCH_PATHS = wax/lib/libffi/darwin_ios/include;
 				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Debug;
@@ -625,7 +813,7 @@
 		1D6058950D05DD3E006BFB54 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ARCHS = "$(ARCHS_STANDARD)";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
@@ -638,6 +826,7 @@
 				PRODUCT_NAME = Tests;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
+				USER_HEADER_SEARCH_PATHS = wax/lib/libffi/darwin_ios/include;
 				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Release;
@@ -657,7 +846,7 @@
 		91373B1C1066B28C0089FEE3 /* Ad Hoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ARCHS = "$(ARCHS_STANDARD)";
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -671,6 +860,7 @@
 				PRODUCT_NAME = Tests;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
+				USER_HEADER_SEARCH_PATHS = wax/lib/libffi/darwin_ios/include;
 				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = "Ad Hoc";
@@ -690,7 +880,7 @@
 		91373B211066B2980089FEE3 /* Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ARCHS = "$(ARCHS_STANDARD)";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
@@ -703,6 +893,7 @@
 				PRODUCT_NAME = Tests;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
+				USER_HEADER_SEARCH_PATHS = wax/lib/libffi/darwin_ios/include;
 				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Distribution;
