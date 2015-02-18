@@ -590,7 +590,7 @@ void myForwardInvocation(id self, SEL _cmd, NSInvocation * inv){
     //HACK
     const char *selectorName = sel_getName([inv selector]);
     char newWaxSelectorName[strlen(selectorName) + 10];
-    strcpy(newWaxSelectorName, "WX");
+    strcpy(newWaxSelectorName, "WAX");
     strcat(newWaxSelectorName, selectorName);
     
     SEL newWaxSelector = sel_getUid(newWaxSelectorName);
@@ -598,6 +598,11 @@ void myForwardInvocation(id self, SEL _cmd, NSInvocation * inv){
     if(class_respondsToSelector([[inv target] class], newWaxSelector)) {
         [inv setSelector:newWaxSelector];
         [inv invoke];
+    }else{
+        if(class_respondsToSelector([[inv target]class], @selector(ORIGforwardInvocation:))){
+            [inv setSelector:@selector(ORIGforwardInvocation:)];
+            [inv invoke];
+        }
     }
 }
 
@@ -711,12 +716,14 @@ static BOOL overrideMethod(lua_State *L, wax_instance_userdata *instanceUserdata
     Class klass = [instanceUserdata->instance class];
     
     if(!class_getClassMethod(klass, @selector(ORIGforwardInvocation:))){
-        class_replaceMethod(klass, @selector(forwardInvocation:), (IMP)myForwardInvocation, "v@:@");
+        IMP forwardInvocationOriginalImp = class_replaceMethod(klass, @selector(forwardInvocation:), (IMP)myForwardInvocation, "v@:@");
+        class_addMethod(klass, @selector(ORIGforwardInvocation:), forwardInvocationOriginalImp, "v@:@");
     }
     
     id metaclass = objc_getMetaClass(object_getClassName(klass));
     if(!class_getClassMethod(metaclass, @selector(ORIGforwardInvocation:))){
-        class_replaceMethod(metaclass, @selector(forwardInvocation:), (IMP)myForwardInvocation, "v@:@");
+        IMP forwardInvocationOriginalImp = class_replaceMethod(metaclass, @selector(forwardInvocation:), (IMP)myForwardInvocation, "v@:@");
+        class_addMethod(metaclass, @selector(ORIGforwardInvocation:), forwardInvocationOriginalImp, "v@:@");
     }
 
     
