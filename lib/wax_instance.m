@@ -695,7 +695,6 @@ END_STACK_MODIFY(L, 0) \
 return returnValue; \
 }
 
-
 typedef struct _buffer_16 {char b[16];} buffer_16;
 
 WAX_METHOD(buffer_16)
@@ -719,6 +718,23 @@ static BOOL overrideMethod(lua_State *L, wax_instance_userdata *instanceUserdata
     }
     
     Class klass = [instanceUserdata->instance class];
+    
+    const char *forwardSelectorName = sel_getName(@selector(forwardInvocation:));
+    char newForwardSelectorName[strlen(forwardSelectorName) + 10];
+    strcpy(newForwardSelectorName, "ORIG");
+    strcat(newForwardSelectorName, forwardSelectorName);
+    SEL newForwardSelector = sel_getUid(newForwardSelectorName);
+    if(!class_getClassMethod(klass, newForwardSelector)){
+        IMP forwardInvocationOriginalImp = class_replaceMethod(klass, @selector(forwardInvocation:), (IMP)myForwardInvocation, "v@:@");
+        class_addMethod(klass, newForwardSelector, forwardInvocationOriginalImp, "v@:@");
+    }
+    
+    id metaclass = objc_getMetaClass(object_getClassName(klass));
+    if(!class_getClassMethod(metaclass, newForwardSelector)){
+        IMP forwardInvocationOriginalImp = class_replaceMethod(metaclass, @selector(forwardInvocation:), (IMP)myForwardInvocation, "v@:@");
+        class_addMethod(metaclass, newForwardSelector, forwardInvocationOriginalImp, "v@:@");
+    }
+
     
     char *typeDescription = nil;
     char *returnType = nil;
@@ -813,23 +829,19 @@ static BOOL overrideMethod(lua_State *L, wax_instance_userdata *instanceUserdata
                 }
                 break;
             }
-                
             default:   
                 luaL_error(L, "Can't override method with return type %s", simplifiedReturnType);
                 return NO;
                 break;
         }
-        // OVERRIDE if exists
 		id metaclass = objc_getMetaClass(object_getClassName(klass));
-//        success = class_addMethod(klass, selector, imp, typeDescription) && class_addMethod(metaclass, selector, imp, typeDescription);
         IMP instImp = class_respondsToSelector(klass, selector) ? class_getMethodImplementation(klass, selector) : NULL;
         IMP metaImp = class_respondsToSelector(metaclass, selector) ? class_getMethodImplementation(metaclass, selector) : NULL;
         if(instImp) {
             // original selector is reserved in ORIGxxxx
             //Strong HACK!!! I can't stress enough how hacky this is! I'm removing the original method implementation so that when it is called, the call gets forwarded by mine myForwardInvocation
             IMP prevImp = class_replaceMethod(klass, selector, class_getMethodImplementation(klass, @selector(testesss)), typeDescription);
-            //TODO keep original forwardinvocation and call it!
-            IMP forwardInvocationOriginalImp = class_replaceMethod(klass, @selector(forwardInvocation:), (IMP)myForwardInvocation, "v@:@");
+
             const char *selectorName = sel_getName(selector);
             //New
             char newWaxSelectorName[strlen(selectorName) + 10];
@@ -843,17 +855,7 @@ static BOOL overrideMethod(lua_State *L, wax_instance_userdata *instanceUserdata
             if(!class_respondsToSelector(klass, newSelector)) {
                 class_addMethod(klass, newSelector, prevImp, typeDescription);
             }
-            
-            //Put the original invocation method
-            const char *forwardSelectorName = sel_getName(@selector(forwardInvocation:));
-            char newForwardSelectorName[strlen(forwardSelectorName) + 10];
-            strcpy(newForwardSelectorName, "ORIG");
-            strcat(newForwardSelectorName, forwardSelectorName);
-            SEL newForwardSelector = sel_getUid(newForwardSelectorName);
-            if(!class_respondsToSelector(klass, newForwardSelector)) {
-                class_addMethod(klass, newForwardSelector, forwardInvocationOriginalImp, "v@:@");
-            }
-            
+
             //New
             SEL newWaxSelector = sel_getUid(newWaxSelectorName);
             if(!class_respondsToSelector(klass, newWaxSelector)) {
@@ -863,17 +865,6 @@ static BOOL overrideMethod(lua_State *L, wax_instance_userdata *instanceUserdata
         } else if(metaImp) {
             //Strong HACK!!! I can't stress enough how hacky this is! I'm removing the original method implementation so that when it is called, the call gets forwarded by mine myForwardInvocation
             IMP prevImp = class_replaceMethod(metaclass, selector, class_getMethodImplementation(metaclass, @selector(testesss)), typeDescription);
-            IMP forwardInvocationOriginalImp = class_replaceMethod(metaclass, @selector(forwardInvocation:), (IMP)myForwardInvocation, "v@:@");
-
-            //Put the original invocation method
-            const char *forwardSelectorName = sel_getName(@selector(forwardInvocation:));
-            char newForwardSelectorName[strlen(forwardSelectorName) + 10];
-            strcpy(newForwardSelectorName, "ORIG");
-            strcat(newForwardSelectorName, forwardSelectorName);
-            SEL newForwardSelector = sel_getUid(newForwardSelectorName);
-            if(!class_respondsToSelector(metaclass, newForwardSelector)) {
-                class_addMethod(metaclass, newForwardSelector, forwardInvocationOriginalImp, "v@:@");
-            }
 
             const char *selectorName = sel_getName(selector);
             char newWaxSelectorName[strlen(selectorName) + 10];
@@ -901,19 +892,6 @@ static BOOL overrideMethod(lua_State *L, wax_instance_userdata *instanceUserdata
             strcat(newWaxSelectorName, selectorName);
             SEL newWaxSelector = sel_getUid(newWaxSelectorName);
 
-            IMP forwardInvocationOriginalImpKlass = class_replaceMethod(klass, @selector(forwardInvocation:), (IMP)myForwardInvocation, "v@:@");
-            
-            IMP forwardInvocationOriginalImpMetaClass = class_replaceMethod(metaclass, @selector(forwardInvocation:), (IMP)myForwardInvocation, "v@:@");
-
-            const char *forwardSelectorName = sel_getName(@selector(forwardInvocation:));
-            char newForwardSelectorName[strlen(forwardSelectorName) + 10];
-            strcpy(newForwardSelectorName, "ORIG");
-            strcat(newForwardSelectorName, forwardSelectorName);
-            SEL newForwardSelector = sel_getUid(newForwardSelectorName);
-            if(!class_respondsToSelector(metaclass, newForwardSelector)) {
-                class_addMethod(klass, newForwardSelector, forwardInvocationOriginalImpKlass, "v@:@");
-                class_addMethod(metaclass, newForwardSelector, forwardInvocationOriginalImpMetaClass, "v@:@");
-            }
             success = class_addMethod(klass, selector, class_getMethodImplementation(klass, @selector(testesss)), typeDescription) && class_addMethod(metaclass, selector, class_getMethodImplementation(klass, @selector(testesss)), typeDescription);
             
             success = class_addMethod(klass, newWaxSelector, imp, typeDescription) && class_addMethod(metaclass, newWaxSelector, imp, typeDescription);
@@ -953,17 +931,6 @@ static BOOL overrideMethod(lua_State *L, wax_instance_userdata *instanceUserdata
             if(instImp) {
                 // original selector is reserved in ORIGxxxx
                 IMP prevImp = class_replaceMethod(klass, selector, class_getMethodImplementation(klass, @selector(testesss)), typeDescription);
-                IMP forwardInvocationOriginalImp = class_replaceMethod(klass, @selector(forwardInvocation:), (IMP)myForwardInvocation, "v@:@");
-                
-                //Put the original invocation method
-                const char *forwardSelectorName = sel_getName(@selector(forwardInvocation:));
-                char newForwardSelectorName[strlen(forwardSelectorName) + 10];
-                strcpy(newForwardSelectorName, "ORIG");
-                strcat(newForwardSelectorName, forwardSelectorName);
-                SEL newForwardSelector = sel_getUid(newForwardSelectorName);
-                if(!class_respondsToSelector(klass, newForwardSelector)) {
-                    class_addMethod(klass, newForwardSelector, forwardInvocationOriginalImp, "v@:@");
-                }
                 
                 const char *selectorName = sel_getName(selector);
                 char newWaxSelectorName[strlen(selectorName) + 10];
@@ -984,17 +951,6 @@ static BOOL overrideMethod(lua_State *L, wax_instance_userdata *instanceUserdata
                 success = YES;
             } else if(metaImp) {
                 IMP prevImp = class_replaceMethod(metaclass, selector, class_getMethodImplementation(metaclass, @selector(testesss)), typeDescription);
-                IMP forwardInvocationOriginalImp = class_replaceMethod(metaclass, @selector(forwardInvocation:), (IMP)myForwardInvocation, "v@:@");
-                
-                //Put the original invocation method
-                const char *forwardSelectorName = sel_getName(@selector(forwardInvocation:));
-                char newForwardSelectorName[strlen(forwardSelectorName) + 10];
-                strcpy(newForwardSelectorName, "ORIG");
-                strcat(newForwardSelectorName, forwardSelectorName);
-                SEL newForwardSelector = sel_getUid(newForwardSelectorName);
-                if(!class_respondsToSelector(metaclass, newForwardSelector)) {
-                    class_addMethod(metaclass, newForwardSelector, forwardInvocationOriginalImp, "v@:@");
-                }
                 
                 const char *selectorName = sel_getName(selector);
                 char newWaxSelectorName[strlen(selectorName) + 10];
@@ -1019,20 +975,6 @@ static BOOL overrideMethod(lua_State *L, wax_instance_userdata *instanceUserdata
                 char newWaxSelectorName[strlen(selectorName) + 10];
                 strcpy(newWaxSelectorName, "WAX");
                 strcat(newWaxSelectorName, selectorName);
-                
-                IMP forwardInvocationOriginalImpKlass = class_replaceMethod(klass, @selector(forwardInvocation:), (IMP)myForwardInvocation, "v@:@");
-                
-                IMP forwardInvocationOriginalImpMetaClass = class_replaceMethod(metaclass, @selector(forwardInvocation:), (IMP)myForwardInvocation, "v@:@");
-                
-                const char *forwardSelectorName = sel_getName(@selector(forwardInvocation:));
-                char newForwardSelectorName[strlen(forwardSelectorName) + 10];
-                strcpy(newForwardSelectorName, "ORIG");
-                strcat(newForwardSelectorName, forwardSelectorName);
-                SEL newForwardSelector = sel_getUid(newForwardSelectorName);
-                if(!class_respondsToSelector(metaclass, newForwardSelector)) {
-                    class_addMethod(klass, newForwardSelector, forwardInvocationOriginalImpKlass, "v@:@");
-                    class_addMethod(metaclass, newForwardSelector, forwardInvocationOriginalImpMetaClass, "v@:@");
-                }
                 
                 SEL newWaxSelector = sel_getUid(newWaxSelectorName);
                 success = class_addMethod(klass, selector, class_getMethodImplementation(klass, @selector(testesss)), typeDescription) && class_addMethod(metaclass, selector, class_getMethodImplementation(klass, @selector(testesss)), typeDescription);
