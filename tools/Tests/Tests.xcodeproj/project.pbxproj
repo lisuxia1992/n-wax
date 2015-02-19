@@ -64,7 +64,6 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
-		73E2E5401A95056E006CD8B3 /* WaxFFIClosure.m in Sources */ = {isa = PBXBuildFile; fileRef = 73E2E53F1A95056E006CD8B3 /* WaxFFIClosure.m */; };
 		73E2E56C1A950588006CD8B3 /* closures.c in Sources */ = {isa = PBXBuildFile; fileRef = 73E2E5491A950588006CD8B3 /* closures.c */; };
 		73E2E56D1A950588006CD8B3 /* debug.c in Sources */ = {isa = PBXBuildFile; fileRef = 73E2E54A1A950588006CD8B3 /* debug.c */; };
 		73E2E56E1A950588006CD8B3 /* dlmalloc.c in Sources */ = {isa = PBXBuildFile; fileRef = 73E2E54B1A950588006CD8B3 /* dlmalloc.c */; };
@@ -82,6 +81,7 @@
 		73E2E57A1A950588006CD8B3 /* ffi64_x86_64.c in Sources */ = {isa = PBXBuildFile; fileRef = 73E2E5691A950588006CD8B3 /* ffi64_x86_64.c */; };
 		73E2E57B1A950588006CD8B3 /* ffi_i386.c in Sources */ = {isa = PBXBuildFile; fileRef = 73E2E56A1A950588006CD8B3 /* ffi_i386.c */; };
 		73E2E57C1A950588006CD8B3 /* win32_i386.S in Sources */ = {isa = PBXBuildFile; fileRef = 73E2E56B1A950588006CD8B3 /* win32_i386.S */; };
+		73E2E5821A966393006CD8B3 /* wax_ffi_closure.m in Sources */ = {isa = PBXBuildFile; fileRef = 73E2E5811A966393006CD8B3 /* wax_ffi_closure.m */; };
 		91373B241066B2B30089FEE3 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 91373B231066B2B30089FEE3 /* Entitlements.plist */; };
 		91373BF01066C8930089FEE3 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 91373BEF1066C8930089FEE3 /* Icon.png */; };
 /* End PBXBuildFile section */
@@ -215,8 +215,6 @@
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* Tests_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tests_Prefix.pch; sourceTree = "<group>"; };
-		73E2E53E1A95056E006CD8B3 /* WaxFFIClosure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WaxFFIClosure.h; path = ../../../../lib/WaxFFIClosure.h; sourceTree = "<group>"; };
-		73E2E53F1A95056E006CD8B3 /* WaxFFIClosure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WaxFFIClosure.m; path = ../../../../lib/WaxFFIClosure.m; sourceTree = "<group>"; };
 		73E2E5441A950588006CD8B3 /* ffi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffi.h; sourceTree = "<group>"; };
 		73E2E5451A950588006CD8B3 /* ffi_common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffi_common.h; sourceTree = "<group>"; };
 		73E2E5461A950588006CD8B3 /* fficonfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fficonfig.h; sourceTree = "<group>"; };
@@ -250,6 +248,8 @@
 		73E2E5691A950588006CD8B3 /* ffi64_x86_64.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ffi64_x86_64.c; sourceTree = "<group>"; };
 		73E2E56A1A950588006CD8B3 /* ffi_i386.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ffi_i386.c; sourceTree = "<group>"; };
 		73E2E56B1A950588006CD8B3 /* win32_i386.S */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = win32_i386.S; sourceTree = "<group>"; };
+		73E2E5801A966393006CD8B3 /* wax_ffi_closure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = wax_ffi_closure.h; path = ../../../../lib/wax_ffi_closure.h; sourceTree = "<group>"; };
+		73E2E5811A966393006CD8B3 /* wax_ffi_closure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = wax_ffi_closure.m; path = ../../../../lib/wax_ffi_closure.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Tests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		91373B231066B2B30089FEE3 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		91373BEF1066C8930089FEE3 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
@@ -286,12 +286,12 @@
 				043E614D113C3DA5007A6104 /* wax_helpers.m */,
 				043E614E113C3DA5007A6104 /* wax_instance.h */,
 				043E614F113C3DA5007A6104 /* wax_instance.m */,
+				73E2E5801A966393006CD8B3 /* wax_ffi_closure.h */,
+				73E2E5811A966393006CD8B3 /* wax_ffi_closure.m */,
 				0413C06E1200C9960069C579 /* wax_server.h */,
 				0413C06F1200C9960069C579 /* wax_server.m */,
 				043E6150113C3DA5007A6104 /* wax_struct.h */,
 				043E6151113C3DA5007A6104 /* wax_struct.m */,
-				73E2E53E1A95056E006CD8B3 /* WaxFFIClosure.h */,
-				73E2E53F1A95056E006CD8B3 /* WaxFFIClosure.m */,
 			);
 			name = wax;
 			path = wax/lib;
@@ -715,7 +715,6 @@
 				73E2E56F1A950588006CD8B3 /* java_raw_api.c in Sources */,
 				043E615B113C3DA5007A6104 /* wax_json.c in Sources */,
 				043E615D113C3DA5007A6104 /* yajl.c in Sources */,
-				73E2E5401A95056E006CD8B3 /* WaxFFIClosure.m in Sources */,
 				73E2E56D1A950588006CD8B3 /* debug.c in Sources */,
 				73E2E5781A950588006CD8B3 /* darwin64_x86_64.S in Sources */,
 				043E615E113C3DA5007A6104 /* yajl_alloc.c in Sources */,
@@ -770,6 +769,7 @@
 				73E2E5771A950588006CD8B3 /* trampoline_armv7.S in Sources */,
 				043E6197113C3DA5007A6104 /* wax_class.m in Sources */,
 				043E6199113C3DA5007A6104 /* wax_helpers.m in Sources */,
+				73E2E5821A966393006CD8B3 /* wax_ffi_closure.m in Sources */,
 				043E619A113C3DA5007A6104 /* wax_instance.m in Sources */,
 				73E2E5731A950588006CD8B3 /* ffi_arm64.c in Sources */,
 				043E619B113C3DA5007A6104 /* wax_struct.m in Sources */,

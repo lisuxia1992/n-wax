@@ -11,7 +11,7 @@
 #import "wax_class.h"
 #import "wax.h"
 #import "wax_helpers.h"
-#import "WaxFFIClosure.h"
+#import "wax_ffi_closure.h"
 
 #import "lauxlib.h"
 #import "lobject.h"
@@ -28,12 +28,7 @@ static int methods(lua_State *L);
 static int methodClosure(lua_State *L);
 static int superMethodClosure(lua_State *L);
 static int customInitMethodClosure(lua_State *L);
-
 static BOOL overrideMethod(lua_State *L, wax_instance_userdata *instanceUserdata);
-static int pcallUserdata(lua_State *L, id self, SEL selector, void** args);
-
-void ** sharedMemoryForArgs;
-int sharedMemoryNArgs;
 
 ffi_type**		argTypes;
 
@@ -567,197 +562,6 @@ static int customInitMethodClosure(lua_State *L) {
     return 1;
 }
 
-void myForwardInvocation(id self, SEL _cmd, NSInvocation * inv){
-    NSInteger n = [[inv methodSignature] numberOfArguments];
-    if(sharedMemoryNArgs>0 && sharedMemoryForArgs){
-        for(int i = 0 ; i < sharedMemoryNArgs; i++){
-            if(sharedMemoryForArgs[i]){
-                free(sharedMemoryForArgs[i]);
-            }
-        }
-        free(sharedMemoryForArgs);
-    }
-    sharedMemoryNArgs = (int)n-2;
-    sharedMemoryForArgs = calloc(sizeof(void *), n-2);
-    void * value = nil;
-    for (int i = 0; i < n-2; i++) {
-        id __unsafe_unretained arg;
-        [inv getArgument:&arg atIndex:(int)i+2];
-        if(!arg){
-            arg = [NSNull null];
-        }
-        value = calloc(sizeof([arg class]), 1);
-        *(id*)value = arg;
-        sharedMemoryForArgs[i] = value;
-    }
-    
-    //HACK
-    const char *selectorName = sel_getName([inv selector]);
-    char newWaxSelectorName[strlen(selectorName) + 10];
-    strcpy(newWaxSelectorName, "WAX");
-    strcat(newWaxSelectorName, selectorName);
-    
-    SEL newWaxSelector = sel_getUid(newWaxSelectorName);
-    
-    if(class_respondsToSelector([[inv target] class], newWaxSelector)) {
-        [inv setSelector:newWaxSelector];
-        [inv invoke];
-    }else{
-        //TODO: Test this!
-        const char *forwardSelectorName = sel_getName(@selector(forwardInvocation:));
-        char newForwardSelectorName[strlen(forwardSelectorName) + 10];
-        strcpy(newForwardSelectorName, "ORIG");
-        strcat(newForwardSelectorName, forwardSelectorName);
-        SEL origForwardSelector = sel_getUid(newForwardSelectorName);
-        [inv setSelector:origForwardSelector];
-        [inv invoke];
-    }
-}
-
-#pragma mark Override Methods
-#pragma mark ---------------------
-
-static int pcallUserdata(lua_State *L, id self, SEL selector, void ** args) {
-    BEGIN_STACK_MODIFY(L)
-    
-    if (![[NSThread currentThread] isEqual:[NSThread mainThread]]) NSLog(@"PCALLUSERDATA: OH NO SEPERATE THREAD");
-    
-    // A WaxClass could have been created via objective-c (like via NSKeyUnarchiver)
-    // In this case, no lua object was ever associated with it, so we've got to
-    // create one.
-    if (wax_instance_isWaxClass(self)) {
-        BOOL isClass = self == [self class];
-        wax_instance_create(L, self, isClass); // If it already exists, then it will just return without doing anything
-        lua_pop(L, 1); // Pops userdata off
-    }
-    
-    // Find the function... could be in the object or in the class
-    if (!wax_instance_pushFunction(L, self, selector)) {
-        lua_pushfstring(L, "Could not find function named \"%s\" associated with object %s(%p).(It may have been released by the GC)", selector, class_getName([self class]), self);
-        goto error; // function not found in userdata...
-    }
-    
-    // Push userdata as the first argument
-    wax_fromInstance(L, self);
-    if (lua_isnil(L, -1)) {
-        lua_pushfstring(L, "Could not convert '%s' into lua", class_getName([self class]));
-        goto error;
-    }
-    
-    NSMethodSignature *signature = [self methodSignatureForSelector:selector];
-    int nargs = [signature numberOfArguments] - 1; // Don't send in the _cmd argument, only self
-    int nresults = [signature methodReturnLength] ? 1 : 0;
-    
-    for (int i = 2; i < [signature numberOfArguments]; i++) { // start at 2 because to skip the automatic self and _cmd arugments
-        const char *type = [signature getArgumentTypeAtIndex:i];
-        int size = wax_fromObjc(L, type, args);
-#ifdef __LP64__
-        int div = 8;
-#else
-        int div = 4;
-#endif
-        args+=size/div;
-    }
-    
-    if (wax_pcall(L, nargs, nresults)) { // Userdata will allways be the first object sent to the function
-        goto error;
-    }
-    
-    END_STACK_MODIFY(L, nresults)
-    return nresults;
-    
-error:
-    END_STACK_MODIFY(L, 1)
-    return -1;
-}
-
-ffi_type* ffi_typeForTypeEncoding(char encoding)
-{
-    switch (encoding)
-    {
-#ifdef __LP64__
-        case	_C_ID:
-        case	_C_CLASS:
-        case	_C_SEL:
-        case	_C_PTR:
-        case	_C_CHARPTR:		return	&ffi_type_pointer;
-            
-        case	_C_CHR:			return	&ffi_type_sint8;
-        case	_C_UCHR:		return	&ffi_type_uint8;
-        case	_C_SHT:			return	&ffi_type_sint16;
-        case	_C_USHT:		return	&ffi_type_uint16;
-        case	_C_INT:
-        case	_C_LNG:         return	&ffi_type_sint32;
-        case	_C_UINT:
-        case	_C_ULNG:		return	&ffi_type_uint32;
-        case	_C_LNG_LNG:		return	&ffi_type_sint64;
-        case	_C_ULNG_LNG:	return	&ffi_type_uint64;
-        case	_C_FLT:			return	&ffi_type_float;
-        case	_C_DBL:			return	&ffi_type_double;
-        case	_C_BOOL:		return	&ffi_type_sint8;
-        case	_C_VOID:		return	&ffi_type_void;
-#else
-        case	_C_ID:
-        case	_C_CLASS:
-        case	_C_SEL:
-        case	_C_PTR:
-        case	_C_CHARPTR:		return	&ffi_type_pointer;
-            
-        case	_C_CHR:			return	&ffi_type_sint8;
-        case	_C_UCHR:		return	&ffi_type_uint8;
-        case	_C_SHT:			return	&ffi_type_sint16;
-        case	_C_USHT:		return	&ffi_type_uint16;
-        case	_C_INT:         return	&ffi_type_sint32;
-        case	_C_LNG:         return	&ffi_type_sint64;
-        case	_C_UINT:        return	&ffi_type_uint32;
-        case	_C_ULNG:		return	&ffi_type_uint64;
-        case	_C_LNG_LNG:		return	&ffi_type_sint64;
-        case	_C_ULNG_LNG:	return	&ffi_type_uint64;
-        case	_C_FLT:			return	&ffi_type_float;
-        case	_C_DBL:			return	&ffi_type_double;
-        case	_C_BOOL:		return	&ffi_type_sint8;
-        case	_C_VOID:		return	&ffi_type_void;
-#endif
-    }
-    return	NULL;
-}
-
-#define WAX_FFI_CLOSURE_METHOD_NAME(_type_) wax_##_type_##_call
-#define WAX_FFI_CLOSURE_METHOD(_type_) \
-static void WAX_FFI_CLOSURE_METHOD_NAME(_type_)(ffi_cif* cif, void *ret, void** args, void* userdata) { \
-id self = *(id*)args[0]; \
-SEL _cmd = *(SEL*)args[1];\
-lua_State *L = wax_currentLuaState(); \
-BEGIN_STACK_MODIFY(L); \
-args=args[2];\
-int result = pcallUserdata(L, self, _cmd, args); \
-if (result == -1) { \
-luaL_error(L, "Error calling '%s' on '%s'\n%s", _cmd, [[self description] UTF8String], lua_tostring(L, -1)); \
-} \
-else if (result == 0) { \
-bzero(ret, sizeof(_type_)); \
-END_STACK_MODIFY(L, 0) \
-return;\
-} \
-\
-NSMethodSignature *signature = [self methodSignatureForSelector:_cmd]; \
-_type_ *pRet = (_type_ *)wax_copyToObjc(L, [signature methodReturnType], -1, nil);\
-_type_ retV = *pRet;\
-free(pRet);\
-END_STACK_MODIFY(L, 0)\
-*(_type_*)ret = retV;\
-}
-
-typedef struct _buffer_16 {char b[16];} buffer_16;
-
-WAX_FFI_CLOSURE_METHOD(buffer_16)
-WAX_FFI_CLOSURE_METHOD(id)
-WAX_FFI_CLOSURE_METHOD(int)
-WAX_FFI_CLOSURE_METHOD(long)
-WAX_FFI_CLOSURE_METHOD(float)
-WAX_FFI_CLOSURE_METHOD(double)
-WAX_FFI_CLOSURE_METHOD(BOOL)
-
 // Only allow classes to do this
 static BOOL overrideMethod(lua_State *L, wax_instance_userdata *instanceUserdata) {
     BEGIN_STACK_MODIFY(L);
@@ -889,20 +693,17 @@ static BOOL overrideMethod(lua_State *L, wax_instance_userdata *instanceUserdata
         IMP instImp = class_respondsToSelector(klass, selector) ? class_getMethodImplementation(klass, selector) : NULL;
         IMP metaImp = class_respondsToSelector(metaclass, selector) ? class_getMethodImplementation(metaclass, selector) : NULL;
         if(instImp) {
-            WaxFFIClosure * waxClosure = [[WaxFFIClosure alloc]init];
-            IMP closure = [waxClosure createFFIClosure:selector :klass :numArgs :ffi_typeForTypeEncoding(*returnType) :argTypes :imp];
+            IMP closure =  createFFIClosure(selector, klass, numArgs, ffi_typeForTypeEncoding(*returnType), argTypes, imp);
             
             success = class_addMethod(klass, selector, closure, typeDescription) && class_addMethod(metaclass, selector, closure, typeDescription);
 
         } else if(metaImp) {
-            WaxFFIClosure * waxClosure = [[WaxFFIClosure alloc]init];
-            IMP closure = [waxClosure createFFIClosure:selector :klass :numArgs :ffi_typeForTypeEncoding(*returnType) :argTypes :imp];
+            IMP closure =  createFFIClosure(selector, klass, numArgs, ffi_typeForTypeEncoding(*returnType), argTypes, imp);
             
             success = class_addMethod(klass, selector, closure, typeDescription) && class_addMethod(metaclass, selector, closure, typeDescription);
 
         } else {
-            WaxFFIClosure * waxClosure = [[WaxFFIClosure alloc]init];
-            IMP closure = [waxClosure createFFIClosure:selector :klass :numArgs :ffi_typeForTypeEncoding(*returnType) :argTypes :imp];
+            IMP closure =  createFFIClosure(selector, klass, numArgs, ffi_typeForTypeEncoding(*returnType), argTypes, imp);
             
             success = class_addMethod(klass, selector, closure, typeDescription) && class_addMethod(metaclass, selector, closure, typeDescription);
 
@@ -925,7 +726,7 @@ static BOOL overrideMethod(lua_State *L, wax_instance_userdata *instanceUserdata
 				argCount++;
 			}
             
-			size_t typeDescriptionSize = 3 + argCount;
+			int typeDescriptionSize = 3 + argCount;
 			typeDescription = calloc(typeDescriptionSize + 1, sizeof(char));
 			memset(typeDescription, '@', typeDescriptionSize);
 			typeDescription[2] = ':'; // Never forget _cmd!
@@ -943,20 +744,17 @@ static BOOL overrideMethod(lua_State *L, wax_instance_userdata *instanceUserdata
                 returnType = "@";
             }
             if(instImp) {
-                WaxFFIClosure * waxClosure = [[WaxFFIClosure alloc]init];
-                IMP closure = [waxClosure createFFIClosure:selector :klass :typeDescriptionSize :ffi_typeForTypeEncoding(*returnType) :argTypes :imp];
+                IMP closure =  createFFIClosure(selector, klass, typeDescriptionSize, ffi_typeForTypeEncoding(*returnType), argTypes, imp);
                 
                 success = class_addMethod(klass, selector, closure, typeDescription) && class_addMethod(metaclass, selector, closure, typeDescription);
 
             } else if(metaImp) {
-                WaxFFIClosure * waxClosure = [[WaxFFIClosure alloc]init];
-                IMP closure = [waxClosure createFFIClosure:selector :klass :typeDescriptionSize :ffi_typeForTypeEncoding(*returnType) :argTypes :imp];
+                IMP closure =  createFFIClosure(selector, klass, typeDescriptionSize, ffi_typeForTypeEncoding(*returnType), argTypes, imp);
                 
                 success = class_addMethod(klass, selector, closure, typeDescription) && class_addMethod(metaclass, selector, closure, typeDescription);
 
             } else {
-                WaxFFIClosure * waxClosure = [[WaxFFIClosure alloc]init];
-                IMP closure = [waxClosure createFFIClosure:selector :klass :typeDescriptionSize :ffi_typeForTypeEncoding(*returnType) :argTypes :imp];
+                IMP closure =  createFFIClosure(selector, klass, typeDescriptionSize, ffi_typeForTypeEncoding(*returnType), argTypes, imp);
                 
                 success = class_addMethod(klass, selector, closure, typeDescription) && class_addMethod(metaclass, selector, closure, typeDescription);
 
