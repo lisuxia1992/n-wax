@@ -79,6 +79,7 @@
 		736A76591A94378F001AAB57 /* ffi64_x86_64.c in Sources */ = {isa = PBXBuildFile; fileRef = 736A76391A94378F001AAB57 /* ffi64_x86_64.c */; };
 		736A765A1A94378F001AAB57 /* ffi_i386.c in Sources */ = {isa = PBXBuildFile; fileRef = 736A763A1A94378F001AAB57 /* ffi_i386.c */; };
 		736A765B1A94378F001AAB57 /* win32_i386.S in Sources */ = {isa = PBXBuildFile; fileRef = 736A763B1A94378F001AAB57 /* win32_i386.S */; };
+		73E2E57F1A954AE7006CD8B3 /* WaxFFIClosure.m in Sources */ = {isa = PBXBuildFile; fileRef = 73E2E57E1A954AE7006CD8B3 /* WaxFFIClosure.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -246,6 +247,8 @@
 		736A76391A94378F001AAB57 /* ffi64_x86_64.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ffi64_x86_64.c; sourceTree = "<group>"; };
 		736A763A1A94378F001AAB57 /* ffi_i386.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ffi_i386.c; sourceTree = "<group>"; };
 		736A763B1A94378F001AAB57 /* win32_i386.S */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = win32_i386.S; sourceTree = "<group>"; };
+		73E2E57D1A954AE7006CD8B3 /* WaxFFIClosure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WaxFFIClosure.h; path = ../../../../lib/WaxFFIClosure.h; sourceTree = "<group>"; };
+		73E2E57E1A954AE7006CD8B3 /* WaxFFIClosure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WaxFFIClosure.m; path = ../../../../lib/WaxFFIClosure.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* States-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "States-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -286,6 +289,8 @@
 				73270D6B1A83979400849D1D /* wax_stdlib_64.h */,
 				04A6186412CA7AB6004ADB76 /* wax_struct.h */,
 				04A6186512CA7AB6004ADB76 /* wax_struct.m */,
+				73E2E57D1A954AE7006CD8B3 /* WaxFFIClosure.h */,
+				73E2E57E1A954AE7006CD8B3 /* WaxFFIClosure.m */,
 			);
 			name = wax;
 			path = wax/lib;
@@ -781,6 +786,7 @@
 				04A6188312CA7AB6004ADB76 /* lfunc.c in Sources */,
 				04A6188412CA7AB6004ADB76 /* lgc.c in Sources */,
 				04A6188512CA7AB6004ADB76 /* linit.c in Sources */,
+				73E2E57F1A954AE7006CD8B3 /* WaxFFIClosure.m in Sources */,
 				04A6188612CA7AB6004ADB76 /* liolib.c in Sources */,
 				736A76521A94378F001AAB57 /* ffi_arm64.c in Sources */,
 				04A6188712CA7AB6004ADB76 /* llex.c in Sources */,

@@ -758,21 +758,6 @@ WAX_FFI_CLOSURE_METHOD(float)
 WAX_FFI_CLOSURE_METHOD(double)
 WAX_FFI_CLOSURE_METHOD(BOOL)
 
-
-
-
-
-
-
-//typedef struct _buffer_16 {char b[16];} buffer_16;
-//
-//WAX_METHOD(buffer_16)
-////WAX_METHOD(id)
-//WAX_METHOD(int)
-//WAX_METHOD(long)
-//WAX_METHOD(float)
-//WAX_METHOD(BOOL) 
-
 // Only allow classes to do this
 static BOOL overrideMethod(lua_State *L, wax_instance_userdata *instanceUserdata) {
     BEGIN_STACK_MODIFY(L);
