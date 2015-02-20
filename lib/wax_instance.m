@@ -692,21 +692,28 @@ static BOOL overrideMethod(lua_State *L, wax_instance_userdata *instanceUserdata
 		id metaclass = objc_getMetaClass(object_getClassName(klass));
         IMP instImp = class_respondsToSelector(klass, selector) ? class_getMethodImplementation(klass, selector) : NULL;
         IMP metaImp = class_respondsToSelector(metaclass, selector) ? class_getMethodImplementation(metaclass, selector) : NULL;
+        IMP closure =  createFFIClosure(selector, klass, numArgs, ffi_typeForTypeEncoding(*returnType), argTypes, imp);
+        
+        const char *selectorName = sel_getName(selector);
+        char newSelectorName[strlen(selectorName) + 10];
+        strcpy(newSelectorName, "ORIG");
+        strcat(newSelectorName, selectorName);
+        SEL newSelector = sel_getUid(newSelectorName);
+
         if(instImp) {
-            IMP closure =  createFFIClosure(selector, klass, numArgs, ffi_typeForTypeEncoding(*returnType), argTypes, imp);
-            
-            success = class_addMethod(klass, selector, closure, typeDescription) && class_addMethod(metaclass, selector, closure, typeDescription);
-
+            IMP originalIMP = class_replaceMethod(klass, selector, closure, typeDescription);
+            if(!class_respondsToSelector(klass, newSelector)) {
+                class_addMethod(klass, newSelector, originalIMP, typeDescription);
+            }
+            success = YES;
         } else if(metaImp) {
-            IMP closure =  createFFIClosure(selector, klass, numArgs, ffi_typeForTypeEncoding(*returnType), argTypes, imp);
-            
-            success = class_addMethod(klass, selector, closure, typeDescription) && class_addMethod(metaclass, selector, closure, typeDescription);
-
+            IMP originalIMP = class_replaceMethod(metaclass, selector, closure, typeDescription);
+            if(!class_respondsToSelector(metaclass, newSelector)) {
+                class_addMethod(metaclass, newSelector, originalIMP, typeDescription);
+            }
+            success = YES;
         } else {
-            IMP closure =  createFFIClosure(selector, klass, numArgs, ffi_typeForTypeEncoding(*returnType), argTypes, imp);
-            
             success = class_addMethod(klass, selector, closure, typeDescription) && class_addMethod(metaclass, selector, closure, typeDescription);
-
         }
         //TODO free returntype
     }
@@ -743,21 +750,27 @@ static BOOL overrideMethod(lua_State *L, wax_instance_userdata *instanceUserdata
             if(returnType == NULL){
                 returnType = "@";
             }
+            IMP closure =  createFFIClosure(selector, klass, typeDescriptionSize, ffi_typeForTypeEncoding(*returnType), argTypes, imp);
+            const char *selectorName = sel_getName(selector);
+            char newSelectorName[strlen(selectorName) + 10];
+            strcpy(newSelectorName, "ORIG");
+            strcat(newSelectorName, selectorName);
+            SEL newSelector = sel_getUid(newSelectorName);
             if(instImp) {
-                IMP closure =  createFFIClosure(selector, klass, typeDescriptionSize, ffi_typeForTypeEncoding(*returnType), argTypes, imp);
+                IMP originalIMP = class_replaceMethod(klass, selector, closure, typeDescription);
+                if(!class_respondsToSelector(klass, newSelector)) {
+                    class_addMethod(klass, newSelector, originalIMP, typeDescription);
+                }
+                success = YES;
                 
-                success = class_addMethod(klass, selector, closure, typeDescription) && class_addMethod(metaclass, selector, closure, typeDescription);
-
             } else if(metaImp) {
-                IMP closure =  createFFIClosure(selector, klass, typeDescriptionSize, ffi_typeForTypeEncoding(*returnType), argTypes, imp);
-                
-                success = class_addMethod(klass, selector, closure, typeDescription) && class_addMethod(metaclass, selector, closure, typeDescription);
-
+                IMP originalIMP = class_replaceMethod(metaclass, selector, closure, typeDescription);
+                if(!class_respondsToSelector(metaclass, newSelector)) {
+                    class_addMethod(metaclass, newSelector, originalIMP, typeDescription);
+                }
+                success = YES;
             } else {
-                IMP closure =  createFFIClosure(selector, klass, typeDescriptionSize, ffi_typeForTypeEncoding(*returnType), argTypes, imp);
-                
                 success = class_addMethod(klass, selector, closure, typeDescription) && class_addMethod(metaclass, selector, closure, typeDescription);
-
             }
 			
 			free(typeDescription);
