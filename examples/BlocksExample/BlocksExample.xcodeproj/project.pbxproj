@@ -7,30 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		731201771A9A233C002FC5D6 /* wax_argument.m in Sources */ = {isa = PBXBuildFile; fileRef = 731201761A9A233C002FC5D6 /* wax_argument.m */; };
 		73E2E5921A998041006CD8B3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 73E2E5911A998041006CD8B3 /* main.m */; };
 		73E2E59B1A998041006CD8B3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73E2E5991A998041006CD8B3 /* Main.storyboard */; };
 		73E2E59D1A998041006CD8B3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73E2E59C1A998041006CD8B3 /* Images.xcassets */; };
 		73E2E5A01A998041006CD8B3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73E2E59E1A998041006CD8B3 /* LaunchScreen.xib */; };
 		73E2E5AC1A998041006CD8B3 /* BlocksExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 73E2E5AB1A998041006CD8B3 /* BlocksExampleTests.m */; };
-		73E2E5F21A998067006CD8B3 /* closures.c in Sources */ = {isa = PBXBuildFile; fileRef = 73E2E5BD1A998067006CD8B3 /* closures.c */; };
-		73E2E5F31A998067006CD8B3 /* debug.c in Sources */ = {isa = PBXBuildFile; fileRef = 73E2E5BE1A998067006CD8B3 /* debug.c */; };
-		73E2E5F41A998067006CD8B3 /* dlmalloc.c in Sources */ = {isa = PBXBuildFile; fileRef = 73E2E5BF1A998067006CD8B3 /* dlmalloc.c */; };
-		73E2E5F51A998067006CD8B3 /* java_raw_api.c in Sources */ = {isa = PBXBuildFile; fileRef = 73E2E5C01A998067006CD8B3 /* java_raw_api.c */; };
-		73E2E5F61A998067006CD8B3 /* prep_cif.c in Sources */ = {isa = PBXBuildFile; fileRef = 73E2E5C11A998067006CD8B3 /* prep_cif.c */; };
-		73E2E5F71A998067006CD8B3 /* raw_api.c in Sources */ = {isa = PBXBuildFile; fileRef = 73E2E5C21A998067006CD8B3 /* raw_api.c */; };
-		73E2E5F81A998067006CD8B3 /* types.c in Sources */ = {isa = PBXBuildFile; fileRef = 73E2E5C31A998067006CD8B3 /* types.c */; };
-		73E2E5F91A998067006CD8B3 /* ffi_arm64.c in Sources */ = {isa = PBXBuildFile; fileRef = 73E2E5D41A998067006CD8B3 /* ffi_arm64.c */; };
-		73E2E5FA1A998067006CD8B3 /* sysv_arm64.S in Sources */ = {isa = PBXBuildFile; fileRef = 73E2E5D51A998067006CD8B3 /* sysv_arm64.S */; };
-		73E2E5FB1A998067006CD8B3 /* ffi_armv7.c in Sources */ = {isa = PBXBuildFile; fileRef = 73E2E5D71A998067006CD8B3 /* ffi_armv7.c */; };
-		73E2E5FC1A998067006CD8B3 /* sysv_armv7.S in Sources */ = {isa = PBXBuildFile; fileRef = 73E2E5D81A998067006CD8B3 /* sysv_armv7.S */; };
-		73E2E5FD1A998067006CD8B3 /* trampoline_armv7.S in Sources */ = {isa = PBXBuildFile; fileRef = 73E2E5D91A998067006CD8B3 /* trampoline_armv7.S */; };
-		73E2E5FE1A998067006CD8B3 /* darwin64_x86_64.S in Sources */ = {isa = PBXBuildFile; fileRef = 73E2E5DB1A998067006CD8B3 /* darwin64_x86_64.S */; };
-		73E2E5FF1A998067006CD8B3 /* darwin_i386.S in Sources */ = {isa = PBXBuildFile; fileRef = 73E2E5DC1A998067006CD8B3 /* darwin_i386.S */; };
-		73E2E6001A998067006CD8B3 /* ffi64_x86_64.c in Sources */ = {isa = PBXBuildFile; fileRef = 73E2E5DD1A998067006CD8B3 /* ffi64_x86_64.c */; };
-		73E2E6011A998067006CD8B3 /* ffi_i386.c in Sources */ = {isa = PBXBuildFile; fileRef = 73E2E5DE1A998067006CD8B3 /* ffi_i386.c */; };
-		73E2E6021A998067006CD8B3 /* win32_i386.S in Sources */ = {isa = PBXBuildFile; fileRef = 73E2E5DF1A998067006CD8B3 /* win32_i386.S */; };
 		73E2E6031A998067006CD8B3 /* wax_class.m in Sources */ = {isa = PBXBuildFile; fileRef = 73E2E5E11A998067006CD8B3 /* wax_class.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		73E2E6041A998067006CD8B3 /* wax_ffi_closure.m in Sources */ = {isa = PBXBuildFile; fileRef = 73E2E5E31A998067006CD8B3 /* wax_ffi_closure.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		73E2E6051A998067006CD8B3 /* wax_gc.m in Sources */ = {isa = PBXBuildFile; fileRef = 73E2E5E51A998067006CD8B3 /* wax_gc.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		73E2E6061A998067006CD8B3 /* wax_helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 73E2E5E71A998067006CD8B3 /* wax_helpers.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		73E2E6071A998067006CD8B3 /* wax_instance.m in Sources */ = {isa = PBXBuildFile; fileRef = 73E2E5E91A998067006CD8B3 /* wax_instance.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -102,6 +85,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		731201751A9A233C002FC5D6 /* wax_argument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = wax_argument.h; path = ../../lib/wax_argument.h; sourceTree = "<group>"; };
+		731201761A9A233C002FC5D6 /* wax_argument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = wax_argument.m; path = ../../lib/wax_argument.m; sourceTree = "<group>"; };
 		73E2E58C1A998041006CD8B3 /* BlocksExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlocksExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73E2E5901A998041006CD8B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		73E2E5911A998041006CD8B3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -111,43 +96,8 @@
 		73E2E5A51A998041006CD8B3 /* BlocksExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BlocksExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		73E2E5AA1A998041006CD8B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		73E2E5AB1A998041006CD8B3 /* BlocksExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlocksExampleTests.m; sourceTree = "<group>"; };
-		73E2E5B81A998067006CD8B3 /* ffi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffi.h; sourceTree = "<group>"; };
-		73E2E5B91A998067006CD8B3 /* ffi_common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffi_common.h; sourceTree = "<group>"; };
-		73E2E5BA1A998067006CD8B3 /* fficonfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fficonfig.h; sourceTree = "<group>"; };
-		73E2E5BB1A998067006CD8B3 /* ffitarget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffitarget.h; sourceTree = "<group>"; };
-		73E2E5BD1A998067006CD8B3 /* closures.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = closures.c; sourceTree = "<group>"; };
-		73E2E5BE1A998067006CD8B3 /* debug.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = debug.c; sourceTree = "<group>"; };
-		73E2E5BF1A998067006CD8B3 /* dlmalloc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dlmalloc.c; sourceTree = "<group>"; };
-		73E2E5C01A998067006CD8B3 /* java_raw_api.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = java_raw_api.c; sourceTree = "<group>"; };
-		73E2E5C11A998067006CD8B3 /* prep_cif.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = prep_cif.c; sourceTree = "<group>"; };
-		73E2E5C21A998067006CD8B3 /* raw_api.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = raw_api.c; sourceTree = "<group>"; };
-		73E2E5C31A998067006CD8B3 /* types.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = types.c; sourceTree = "<group>"; };
-		73E2E5C61A998067006CD8B3 /* ffi_arm64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffi_arm64.h; sourceTree = "<group>"; };
-		73E2E5C71A998067006CD8B3 /* ffi_armv7.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffi_armv7.h; sourceTree = "<group>"; };
-		73E2E5C81A998067006CD8B3 /* ffi_i386.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffi_i386.h; sourceTree = "<group>"; };
-		73E2E5C91A998067006CD8B3 /* ffi_x86_64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffi_x86_64.h; sourceTree = "<group>"; };
-		73E2E5CA1A998067006CD8B3 /* fficonfig_arm64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fficonfig_arm64.h; sourceTree = "<group>"; };
-		73E2E5CB1A998067006CD8B3 /* fficonfig_armv7.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fficonfig_armv7.h; sourceTree = "<group>"; };
-		73E2E5CC1A998067006CD8B3 /* fficonfig_i386.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fficonfig_i386.h; sourceTree = "<group>"; };
-		73E2E5CD1A998067006CD8B3 /* fficonfig_x86_64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fficonfig_x86_64.h; sourceTree = "<group>"; };
-		73E2E5CE1A998067006CD8B3 /* ffitarget_arm64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffitarget_arm64.h; sourceTree = "<group>"; };
-		73E2E5CF1A998067006CD8B3 /* ffitarget_armv7.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffitarget_armv7.h; sourceTree = "<group>"; };
-		73E2E5D01A998067006CD8B3 /* ffitarget_i386.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffitarget_i386.h; sourceTree = "<group>"; };
-		73E2E5D11A998067006CD8B3 /* ffitarget_x86_64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffitarget_x86_64.h; sourceTree = "<group>"; };
-		73E2E5D41A998067006CD8B3 /* ffi_arm64.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ffi_arm64.c; sourceTree = "<group>"; };
-		73E2E5D51A998067006CD8B3 /* sysv_arm64.S */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = sysv_arm64.S; sourceTree = "<group>"; };
-		73E2E5D71A998067006CD8B3 /* ffi_armv7.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ffi_armv7.c; sourceTree = "<group>"; };
-		73E2E5D81A998067006CD8B3 /* sysv_armv7.S */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = sysv_armv7.S; sourceTree = "<group>"; };
-		73E2E5D91A998067006CD8B3 /* trampoline_armv7.S */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = trampoline_armv7.S; sourceTree = "<group>"; };
-		73E2E5DB1A998067006CD8B3 /* darwin64_x86_64.S */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = darwin64_x86_64.S; sourceTree = "<group>"; };
-		73E2E5DC1A998067006CD8B3 /* darwin_i386.S */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = darwin_i386.S; sourceTree = "<group>"; };
-		73E2E5DD1A998067006CD8B3 /* ffi64_x86_64.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ffi64_x86_64.c; sourceTree = "<group>"; };
-		73E2E5DE1A998067006CD8B3 /* ffi_i386.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ffi_i386.c; sourceTree = "<group>"; };
-		73E2E5DF1A998067006CD8B3 /* win32_i386.S */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = win32_i386.S; sourceTree = "<group>"; };
 		73E2E5E01A998067006CD8B3 /* wax_class.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = wax_class.h; path = ../../lib/wax_class.h; sourceTree = "<group>"; };
 		73E2E5E11A998067006CD8B3 /* wax_class.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = wax_class.m; path = ../../lib/wax_class.m; sourceTree = "<group>"; };
-		73E2E5E21A998067006CD8B3 /* wax_ffi_closure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = wax_ffi_closure.h; path = ../../lib/wax_ffi_closure.h; sourceTree = "<group>"; };
-		73E2E5E31A998067006CD8B3 /* wax_ffi_closure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = wax_ffi_closure.m; path = ../../lib/wax_ffi_closure.m; sourceTree = "<group>"; };
 		73E2E5E41A998067006CD8B3 /* wax_gc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = wax_gc.h; path = ../../lib/wax_gc.h; sourceTree = "<group>"; };
 		73E2E5E51A998067006CD8B3 /* wax_gc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = wax_gc.m; path = ../../lib/wax_gc.m; sourceTree = "<group>"; };
 		73E2E5E61A998067006CD8B3 /* wax_helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = wax_helpers.h; path = ../../lib/wax_helpers.h; sourceTree = "<group>"; };
@@ -290,7 +240,6 @@
 				73E2E6A51A9983BA006CD8B3 /* Foundation.framework */,
 				73E2E6A31A9983B2006CD8B3 /* libxml2.2.dylib */,
 				73E2E60B1A99806E006CD8B3 /* wax */,
-				73E2E5B51A998067006CD8B3 /* libffi */,
 				73E2E58E1A998041006CD8B3 /* BlocksExample */,
 				73E2E5A81A998041006CD8B3 /* BlocksExampleTests */,
 				73E2E58D1A998041006CD8B3 /* Products */,
@@ -343,119 +292,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		73E2E5B51A998067006CD8B3 /* libffi */ = {
-			isa = PBXGroup;
-			children = (
-				73E2E5B61A998067006CD8B3 /* darwin_common */,
-				73E2E5C41A998067006CD8B3 /* darwin_ios */,
-			);
-			name = libffi;
-			path = ../../lib/libffi;
-			sourceTree = "<group>";
-		};
-		73E2E5B61A998067006CD8B3 /* darwin_common */ = {
-			isa = PBXGroup;
-			children = (
-				73E2E5B71A998067006CD8B3 /* include */,
-				73E2E5BC1A998067006CD8B3 /* src */,
-			);
-			path = darwin_common;
-			sourceTree = "<group>";
-		};
-		73E2E5B71A998067006CD8B3 /* include */ = {
-			isa = PBXGroup;
-			children = (
-				73E2E5B81A998067006CD8B3 /* ffi.h */,
-				73E2E5B91A998067006CD8B3 /* ffi_common.h */,
-				73E2E5BA1A998067006CD8B3 /* fficonfig.h */,
-				73E2E5BB1A998067006CD8B3 /* ffitarget.h */,
-			);
-			path = include;
-			sourceTree = "<group>";
-		};
-		73E2E5BC1A998067006CD8B3 /* src */ = {
-			isa = PBXGroup;
-			children = (
-				73E2E5BD1A998067006CD8B3 /* closures.c */,
-				73E2E5BE1A998067006CD8B3 /* debug.c */,
-				73E2E5BF1A998067006CD8B3 /* dlmalloc.c */,
-				73E2E5C01A998067006CD8B3 /* java_raw_api.c */,
-				73E2E5C11A998067006CD8B3 /* prep_cif.c */,
-				73E2E5C21A998067006CD8B3 /* raw_api.c */,
-				73E2E5C31A998067006CD8B3 /* types.c */,
-			);
-			path = src;
-			sourceTree = "<group>";
-		};
-		73E2E5C41A998067006CD8B3 /* darwin_ios */ = {
-			isa = PBXGroup;
-			children = (
-				73E2E5C51A998067006CD8B3 /* include */,
-				73E2E5D21A998067006CD8B3 /* src */,
-			);
-			path = darwin_ios;
-			sourceTree = "<group>";
-		};
-		73E2E5C51A998067006CD8B3 /* include */ = {
-			isa = PBXGroup;
-			children = (
-				73E2E5C61A998067006CD8B3 /* ffi_arm64.h */,
-				73E2E5C71A998067006CD8B3 /* ffi_armv7.h */,
-				73E2E5C81A998067006CD8B3 /* ffi_i386.h */,
-				73E2E5C91A998067006CD8B3 /* ffi_x86_64.h */,
-				73E2E5CA1A998067006CD8B3 /* fficonfig_arm64.h */,
-				73E2E5CB1A998067006CD8B3 /* fficonfig_armv7.h */,
-				73E2E5CC1A998067006CD8B3 /* fficonfig_i386.h */,
-				73E2E5CD1A998067006CD8B3 /* fficonfig_x86_64.h */,
-				73E2E5CE1A998067006CD8B3 /* ffitarget_arm64.h */,
-				73E2E5CF1A998067006CD8B3 /* ffitarget_armv7.h */,
-				73E2E5D01A998067006CD8B3 /* ffitarget_i386.h */,
-				73E2E5D11A998067006CD8B3 /* ffitarget_x86_64.h */,
-			);
-			path = include;
-			sourceTree = "<group>";
-		};
-		73E2E5D21A998067006CD8B3 /* src */ = {
-			isa = PBXGroup;
-			children = (
-				73E2E5D31A998067006CD8B3 /* aarch64 */,
-				73E2E5D61A998067006CD8B3 /* arm */,
-				73E2E5DA1A998067006CD8B3 /* x86 */,
-			);
-			path = src;
-			sourceTree = "<group>";
-		};
-		73E2E5D31A998067006CD8B3 /* aarch64 */ = {
-			isa = PBXGroup;
-			children = (
-				73E2E5D41A998067006CD8B3 /* ffi_arm64.c */,
-				73E2E5D51A998067006CD8B3 /* sysv_arm64.S */,
-			);
-			path = aarch64;
-			sourceTree = "<group>";
-		};
-		73E2E5D61A998067006CD8B3 /* arm */ = {
-			isa = PBXGroup;
-			children = (
-				73E2E5D71A998067006CD8B3 /* ffi_armv7.c */,
-				73E2E5D81A998067006CD8B3 /* sysv_armv7.S */,
-				73E2E5D91A998067006CD8B3 /* trampoline_armv7.S */,
-			);
-			path = arm;
-			sourceTree = "<group>";
-		};
-		73E2E5DA1A998067006CD8B3 /* x86 */ = {
-			isa = PBXGroup;
-			children = (
-				73E2E5DB1A998067006CD8B3 /* darwin64_x86_64.S */,
-				73E2E5DC1A998067006CD8B3 /* darwin_i386.S */,
-				73E2E5DD1A998067006CD8B3 /* ffi64_x86_64.c */,
-				73E2E5DE1A998067006CD8B3 /* ffi_i386.c */,
-				73E2E5DF1A998067006CD8B3 /* win32_i386.S */,
-			);
-			path = x86;
-			sourceTree = "<group>";
-		};
 		73E2E60B1A99806E006CD8B3 /* wax */ = {
 			isa = PBXGroup;
 			children = (
@@ -463,14 +299,14 @@
 				73E2E60C1A998090006CD8B3 /* lua */,
 				73E2E5E01A998067006CD8B3 /* wax_class.h */,
 				73E2E5E11A998067006CD8B3 /* wax_class.m */,
-				73E2E5E21A998067006CD8B3 /* wax_ffi_closure.h */,
-				73E2E5E31A998067006CD8B3 /* wax_ffi_closure.m */,
 				73E2E5E41A998067006CD8B3 /* wax_gc.h */,
 				73E2E5E51A998067006CD8B3 /* wax_gc.m */,
 				73E2E5E61A998067006CD8B3 /* wax_helpers.h */,
 				73E2E5E71A998067006CD8B3 /* wax_helpers.m */,
 				73E2E5E81A998067006CD8B3 /* wax_instance.h */,
 				73E2E5E91A998067006CD8B3 /* wax_instance.m */,
+				731201751A9A233C002FC5D6 /* wax_argument.h */,
+				731201761A9A233C002FC5D6 /* wax_argument.m */,
 				73E2E5EA1A998067006CD8B3 /* wax_server.h */,
 				73E2E5EB1A998067006CD8B3 /* wax_server.m */,
 				73E2E5EC1A998067006CD8B3 /* wax_stdlib_64.h */,
@@ -758,11 +594,8 @@
 			files = (
 				73E2E6981A99814E006CD8B3 /* yajl.c in Sources */,
 				73E2E60A1A998067006CD8B3 /* wax.m in Sources */,
-				73E2E6001A998067006CD8B3 /* ffi64_x86_64.c in Sources */,
 				73E2E6951A99814E006CD8B3 /* wax_http_connection.m in Sources */,
-				73E2E6021A998067006CD8B3 /* win32_i386.S in Sources */,
 				73E2E6971A99814E006CD8B3 /* wax_json.c in Sources */,
-				73E2E5FF1A998067006CD8B3 /* darwin_i386.S in Sources */,
 				73E2E64D1A998091006CD8B3 /* liolib.c in Sources */,
 				73E2E65D1A998091006CD8B3 /* lvm.c in Sources */,
 				73E2E6511A998091006CD8B3 /* loadlib.c in Sources */,
@@ -770,39 +603,29 @@
 				73E2E69B1A99814E006CD8B3 /* yajl_encode.c in Sources */,
 				73E2E64A1A998091006CD8B3 /* lfunc.c in Sources */,
 				73E2E6031A998067006CD8B3 /* wax_class.m in Sources */,
-				73E2E5F71A998067006CD8B3 /* raw_api.c in Sources */,
 				73E2E6081A998067006CD8B3 /* wax_server.m in Sources */,
 				73E2E6481A998091006CD8B3 /* ldo.c in Sources */,
 				73E2E6591A998091006CD8B3 /* ltable.c in Sources */,
 				73E2E6931A99814E006CD8B3 /* wax_filesystem.m in Sources */,
 				73E2E6521A998091006CD8B3 /* lobject.c in Sources */,
 				73E2E6941A99814E006CD8B3 /* wax_http.m in Sources */,
-				73E2E5F91A998067006CD8B3 /* ffi_arm64.c in Sources */,
 				73E2E65F1A998091006CD8B3 /* print.c in Sources */,
 				73E2E64E1A998091006CD8B3 /* llex.c in Sources */,
-				73E2E6011A998067006CD8B3 /* ffi_i386.c in Sources */,
-				73E2E5F51A998067006CD8B3 /* java_raw_api.c in Sources */,
 				73E2E6471A998091006CD8B3 /* ldebug.c in Sources */,
 				73E2E6551A998091006CD8B3 /* lparser.c in Sources */,
-				73E2E5F81A998067006CD8B3 /* types.c in Sources */,
 				73E2E65E1A998091006CD8B3 /* lzio.c in Sources */,
 				73E2E64B1A998091006CD8B3 /* lgc.c in Sources */,
-				73E2E5F31A998067006CD8B3 /* debug.c in Sources */,
 				73E2E6421A998091006CD8B3 /* lapi.c in Sources */,
-				73E2E5F61A998067006CD8B3 /* prep_cif.c in Sources */,
 				73E2E6581A998091006CD8B3 /* lstrlib.c in Sources */,
 				73E2E6071A998067006CD8B3 /* wax_instance.m in Sources */,
 				73E2E6461A998091006CD8B3 /* ldblib.c in Sources */,
-				73E2E5FC1A998067006CD8B3 /* sysv_armv7.S in Sources */,
 				73E2E64F1A998091006CD8B3 /* lmathlib.c in Sources */,
 				73E2E69D1A99814E006CD8B3 /* yajl_lex.c in Sources */,
-				73E2E6041A998067006CD8B3 /* wax_ffi_closure.m in Sources */,
 				73E2E6B51A998F20006CD8B3 /* BlockTestClass.m in Sources */,
 				73E2E6A21A99814E006CD8B3 /* wax_xml.m in Sources */,
 				73E2E5921A998041006CD8B3 /* main.m in Sources */,
 				73E2E6541A998091006CD8B3 /* loslib.c in Sources */,
 				73E2E6501A998091006CD8B3 /* lmem.c in Sources */,
-				73E2E5FB1A998067006CD8B3 /* ffi_armv7.c in Sources */,
 				73E2E6561A998091006CD8B3 /* lstate.c in Sources */,
 				73E2E6061A998067006CD8B3 /* wax_helpers.m in Sources */,
 				73E2E6431A998091006CD8B3 /* lauxlib.c in Sources */,
@@ -810,19 +633,15 @@
 				73E2E6441A998091006CD8B3 /* lbaselib.c in Sources */,
 				73E2E6531A998091006CD8B3 /* lopcodes.c in Sources */,
 				73E2E69E1A99814E006CD8B3 /* yajl_parser.c in Sources */,
-				73E2E5F21A998067006CD8B3 /* closures.c in Sources */,
 				73E2E69C1A99814E006CD8B3 /* yajl_gen.c in Sources */,
 				73E2E6091A998067006CD8B3 /* wax_struct.m in Sources */,
 				73E2E6491A998091006CD8B3 /* ldump.c in Sources */,
 				73E2E6571A998091006CD8B3 /* lstring.c in Sources */,
 				73E2E64C1A998091006CD8B3 /* linit.c in Sources */,
 				73E2E65C1A998091006CD8B3 /* lundump.c in Sources */,
-				73E2E5F41A998067006CD8B3 /* dlmalloc.c in Sources */,
-				73E2E5FA1A998067006CD8B3 /* sysv_arm64.S in Sources */,
-				73E2E5FD1A998067006CD8B3 /* trampoline_armv7.S in Sources */,
+				731201771A9A233C002FC5D6 /* wax_argument.m in Sources */,
 				73E2E65B1A998091006CD8B3 /* ltm.c in Sources */,
 				73E2E69A1A99814E006CD8B3 /* yajl_buf.c in Sources */,
-				73E2E5FE1A998067006CD8B3 /* darwin64_x86_64.S in Sources */,
 				73E2E6451A998091006CD8B3 /* lcode.c in Sources */,
 				73E2E6991A99814E006CD8B3 /* yajl_alloc.c in Sources */,
 			);

@@ -62,6 +62,7 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
+		731201741A9A230D002FC5D6 /* wax_argument.m in Sources */ = {isa = PBXBuildFile; fileRef = 731201731A9A230D002FC5D6 /* wax_argument.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -198,6 +199,8 @@
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* States_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = States_Prefix.pch; sourceTree = "<group>"; };
+		731201721A9A230D002FC5D6 /* wax_argument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = wax_argument.h; path = ../../../../lib/wax_argument.h; sourceTree = "<group>"; };
+		731201731A9A230D002FC5D6 /* wax_argument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = wax_argument.m; path = ../../../../lib/wax_argument.m; sourceTree = "<group>"; };
 		73270D6B1A83979400849D1D /* wax_stdlib_64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = wax_stdlib_64.h; path = ../../../../lib/wax_stdlib_64.h; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* States-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "States-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -233,6 +236,8 @@
 				04A6185E12CA7AB6004ADB76 /* wax_helpers.m */,
 				04A6185F12CA7AB6004ADB76 /* wax_instance.h */,
 				04A6186012CA7AB6004ADB76 /* wax_instance.m */,
+				731201721A9A230D002FC5D6 /* wax_argument.h */,
+				731201731A9A230D002FC5D6 /* wax_argument.m */,
 				04A6186112CA7AB6004ADB76 /* wax_server.h */,
 				04A6186212CA7AB6004ADB76 /* wax_server.m */,
 				04A6186312CA7AB6004ADB76 /* wax_stdlib.h */,
@@ -632,6 +637,7 @@
 				04A6189012CA7AB6004ADB76 /* lstring.c in Sources */,
 				04A6189112CA7AB6004ADB76 /* lstrlib.c in Sources */,
 				04A6189212CA7AB6004ADB76 /* ltable.c in Sources */,
+				731201741A9A230D002FC5D6 /* wax_argument.m in Sources */,
 				04A6189312CA7AB6004ADB76 /* ltablib.c in Sources */,
 				04A6189412CA7AB6004ADB76 /* ltm.c in Sources */,
 				04A6189512CA7AB6004ADB76 /* lundump.c in Sources */,
@@ -664,7 +670,7 @@
 				HEADER_SEARCH_PATHS = "$(SDK_ROOT)/usr/include/libxml2";
 				INFOPLIST_FILE = "States-Info.plist";
 				PRODUCT_NAME = States;
-				VALID_ARCHS = "armv7 armv7s arm64";
+				VALID_ARCHS = "armv7 armv7s";
 			};
 			name = Debug;
 		};
@@ -680,7 +686,7 @@
 				INFOPLIST_FILE = "States-Info.plist";
 				PRODUCT_NAME = States;
 				VALIDATE_PRODUCT = YES;
-				VALID_ARCHS = "armv7 armv7s arm64";
+				VALID_ARCHS = "armv7 armv7s";
 			};
 			name = Release;
 		};

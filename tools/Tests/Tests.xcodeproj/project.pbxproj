@@ -64,6 +64,7 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
+		731201711A9A1DCD002FC5D6 /* wax_argument.m in Sources */ = {isa = PBXBuildFile; fileRef = 731201701A9A1DCD002FC5D6 /* wax_argument.m */; };
 		91373B241066B2B30089FEE3 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 91373B231066B2B30089FEE3 /* Entitlements.plist */; };
 		91373BF01066C8930089FEE3 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 91373BEF1066C8930089FEE3 /* Icon.png */; };
 /* End PBXBuildFile section */
@@ -197,6 +198,8 @@
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* Tests_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tests_Prefix.pch; sourceTree = "<group>"; };
+		7312016F1A9A1DCD002FC5D6 /* wax_argument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = wax_argument.h; path = ../../../../lib/wax_argument.h; sourceTree = "<group>"; };
+		731201701A9A1DCD002FC5D6 /* wax_argument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = wax_argument.m; path = ../../../../lib/wax_argument.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Tests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		91373B231066B2B30089FEE3 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		91373BEF1066C8930089FEE3 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
@@ -233,6 +236,8 @@
 				043E614D113C3DA5007A6104 /* wax_helpers.m */,
 				043E614E113C3DA5007A6104 /* wax_instance.h */,
 				043E614F113C3DA5007A6104 /* wax_instance.m */,
+				7312016F1A9A1DCD002FC5D6 /* wax_argument.h */,
+				731201701A9A1DCD002FC5D6 /* wax_argument.m */,
 				0413C06E1200C9960069C579 /* wax_server.h */,
 				0413C06F1200C9960069C579 /* wax_server.m */,
 				043E6150113C3DA5007A6104 /* wax_struct.h */,
@@ -553,6 +558,7 @@
 				043E6167113C3DA5007A6104 /* wax_xml.m in Sources */,
 				043E6168113C3DA5007A6104 /* lapi.c in Sources */,
 				043E6169113C3DA5007A6104 /* lauxlib.c in Sources */,
+				731201711A9A1DCD002FC5D6 /* wax_argument.m in Sources */,
 				043E616A113C3DA5007A6104 /* lbaselib.c in Sources */,
 				043E616B113C3DA5007A6104 /* lcode.c in Sources */,
 				043E616C113C3DA5007A6104 /* ldblib.c in Sources */,
@@ -618,7 +624,7 @@
 				PRODUCT_NAME = Tests;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
-				VALID_ARCHS = "armv7 armv7s arm64";
+				VALID_ARCHS = "armv7 armv7s";
 			};
 			name = Debug;
 		};
@@ -638,7 +644,7 @@
 				PRODUCT_NAME = Tests;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
-				VALID_ARCHS = "armv7 armv7s arm64";
+				VALID_ARCHS = "armv7 armv7s";
 			};
 			name = Release;
 		};
@@ -671,7 +677,7 @@
 				PRODUCT_NAME = Tests;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
-				VALID_ARCHS = "armv7 armv7s arm64";
+				VALID_ARCHS = "armv7 armv7s";
 			};
 			name = "Ad Hoc";
 		};
@@ -703,7 +709,7 @@
 				PRODUCT_NAME = Tests;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
-				VALID_ARCHS = "armv7 armv7s arm64";
+				VALID_ARCHS = "armv7 armv7s";
 			};
 			name = Distribution;
 		};

@@ -11,6 +11,7 @@
 #import "wax_class.h"
 #import "wax.h"
 #import "wax_helpers.h"
+#import "wax_argument.h"
 
 #import "lauxlib.h"
 #import "lobject.h"
@@ -28,10 +29,8 @@ static int superMethodClosure(lua_State *L);
 static int customInitMethodClosure(lua_State *L);
 
 static BOOL overrideMethod(lua_State *L, wax_instance_userdata *instanceUserdata);
-static int pcallUserdata(lua_State *L, id self, SEL selector);
 
-void ** sharedMemoryForArgs;
-int sharedMemoryNArgs;
+static int pcallUserdata(lua_State *L, id self, SEL selector, struct Arguments* arguments);
 
 static const struct luaL_Reg metaFunctions[] = {
     {"__index", __index},
@@ -565,17 +564,8 @@ static int customInitMethodClosure(lua_State *L) {
 
 void myForwardInvocation(id self, SEL _cmd, NSInvocation * inv){
     NSInteger n = [[inv methodSignature] numberOfArguments];
-    if(sharedMemoryNArgs>0 && sharedMemoryForArgs){
-        for(int i = 0 ; i < sharedMemoryNArgs; i++){
-            if(sharedMemoryForArgs[i]){
-                free(sharedMemoryForArgs[i]);
-            }
-        }
-        free(sharedMemoryForArgs);
-    }
-    sharedMemoryNArgs = (int)n-2;
-    sharedMemoryForArgs = calloc(sizeof(void *), n-2);
-    void * value = nil;
+    Arguments * list = NewArgumentList();
+    void * value;
     for (int i = 0; i < n-2; i++) {
         id __unsafe_unretained arg;
         [inv getArgument:&arg atIndex:(int)i+2];
@@ -584,7 +574,7 @@ void myForwardInvocation(id self, SEL _cmd, NSInvocation * inv){
         }
         value = calloc(sizeof([arg class]), 1);
         *(id*)value = arg;
-        sharedMemoryForArgs[i] = value;
+        addArgument(list, value);
     }
     
     //HACK
@@ -596,6 +586,9 @@ void myForwardInvocation(id self, SEL _cmd, NSInvocation * inv){
     SEL newWaxSelector = sel_getUid(newWaxSelectorName);
     
     if(class_respondsToSelector([[inv target] class], newWaxSelector)) {
+        if([[inv methodSignature]numberOfArguments] > 2){
+            [inv setArgument:&list atIndex:2];
+        }
         [inv setSelector:newWaxSelector];
         [inv invoke];
     }else{
@@ -604,12 +597,13 @@ void myForwardInvocation(id self, SEL _cmd, NSInvocation * inv){
             [inv invoke];
         }
     }
+    freeArguments(list);
 }
 
 #pragma mark Override Methods
 #pragma mark ---------------------
 
-static int pcallUserdata(lua_State *L, id self, SEL selector) {
+static int pcallUserdata(lua_State *L, id self, SEL selector, struct Arguments* arguments) {
     BEGIN_STACK_MODIFY(L)
     
     if (![[NSThread currentThread] isEqual:[NSThread mainThread]]) NSLog(@"PCALLUSERDATA: OH NO SEPERATE THREAD");
@@ -647,10 +641,14 @@ static int pcallUserdata(lua_State *L, id self, SEL selector) {
     NSMethodSignature *signature = [self methodSignatureForSelector:selector];
     int nargs = [signature numberOfArguments] - 1; // Don't send in the _cmd argument, only self
     int nresults = [signature methodReturnLength] ? 1 : 0;
-    
+    Argument * args;
+    if(nargs > 1){
+        args = arguments->first;
+    }
     for (int i = 2; i < [signature numberOfArguments]; i++) { // start at 2 because to skip the automatic self and _cmd arugments
         const char *type = [signature getArgumentTypeAtIndex:i];
-        wax_fromObjc(L, type, sharedMemoryForArgs[i-2]);
+        wax_fromObjc(L, type, args->data);
+        args=args->next;
     }
     
     if (wax_pcall(L, nargs, nresults)) { // Userdata will allways be the first object sent to the function  
@@ -668,11 +666,11 @@ error:
 #define WAX_METHOD_NAME(_type_) wax_##_type_##_call
 
 #define WAX_METHOD(_type_) \
-static _type_ WAX_METHOD_NAME(_type_)(id self, SEL _cmd) { \
+static _type_ WAX_METHOD_NAME(_type_)(id self, SEL _cmd, struct Arguments * args) { \
 /* Grab the static L... this is a hack */ \
 lua_State *L = wax_currentLuaState(); \
 BEGIN_STACK_MODIFY(L); \
-int result = pcallUserdata(L, self, _cmd); \
+int result = pcallUserdata(L, self, _cmd, args); \
 if (result == -1) { \
     luaL_error(L, "Error calling '%s' on '%s'\n%s", _cmd, [[self description] UTF8String], lua_tostring(L, -1)); \
 } \
@@ -886,9 +884,7 @@ static BOOL overrideMethod(lua_State *L, wax_instance_userdata *instanceUserdata
             success = class_addMethod(klass, selector, class_getMethodImplementation(klass, @selector(testesss)), typeDescription) && class_addMethod(metaclass, selector, class_getMethodImplementation(klass, @selector(testesss)), typeDescription);
             
             success = class_addMethod(klass, newWaxSelector, imp, typeDescription) && class_addMethod(metaclass, newWaxSelector, imp, typeDescription);
-        }
-        
-        if (returnType) free(returnType);
+        }        
     }
     else {
 		SEL possibleSelectors[2];
@@ -913,9 +909,6 @@ static BOOL overrideMethod(lua_State *L, wax_instance_userdata *instanceUserdata
 			
 			IMP imp = (IMP)WAX_METHOD_NAME(id);
 			id metaclass = objc_getMetaClass(object_getClassName(klass));
-
-//            success = class_addMethod(klass, possibleSelectors[i], imp, typeDescription) &&
-//				class_addMethod(metaclass, possibleSelectors[i], imp, typeDescription);
             
             IMP instImp = class_respondsToSelector(klass, selector) ? class_getMethodImplementation(klass, selector) : NULL;
             IMP metaImp = class_respondsToSelector(metaclass, selector) ? class_getMethodImplementation(metaclass, selector) : NULL;
