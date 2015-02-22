@@ -848,10 +848,10 @@
 					wax/lib/libffi/darwin_ios/include,
 				);
 				INFOPLIST_FILE = "States-Info.plist";
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = States;
 				PROVISIONING_PROFILE = "";
-				VALID_ARCHS = "arm64 armv7";
+				VALID_ARCHS = "armv7 arm64";
 			};
 			name = Debug;
 		};
@@ -869,11 +869,11 @@
 					wax/lib/libffi/darwin_ios/include,
 				);
 				INFOPLIST_FILE = "States-Info.plist";
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = States;
 				PROVISIONING_PROFILE = "";
 				VALIDATE_PRODUCT = YES;
-				VALID_ARCHS = "arm64 armv7";
+				VALID_ARCHS = "armv7 arm64";
 			};
 			name = Release;
 		};
