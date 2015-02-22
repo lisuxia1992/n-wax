@@ -10,8 +10,46 @@
 #import "wax_instance.h"
 #import "wax_struct.h"
 #import "lauxlib.h"
+#import "wax.h"
 
 @interface WaxFunction : NSObject {}
+@end
+
+@interface WaxFunction (Blocks)
+- (void (^)())asVoidNiladicBlock;
+- (void (^)( NSObject *))asVoidMonadicBlock;
+- (void (^)( NSObject *, NSObject *))asVoidDyadicBlock;
+@end
+
+@implementation WaxFunction (Blocks)
+
+-(void (^)())asVoidNiladicBlock {
+    return [[^() {
+        lua_State *L = wax_currentLuaState();
+        wax_fromInstance(L, self);
+        lua_call(L, 0, 0);
+    } copy] autorelease];
+}
+
+-(void (^)(NSObject *p))asVoidMonadicBlock {
+    return [[^(NSObject *param) {
+        lua_State *L = wax_currentLuaState();
+        wax_fromInstance(L, self);
+        wax_fromInstance(L, param);
+        lua_call(L, 1, 0);
+    } copy] autorelease];
+}
+
+-(void (^)(NSObject *p1, NSObject * p2))asVoidDyadicBlock {
+    return [[^(NSObject *param1, NSObject *param2) {
+        lua_State *L = wax_currentLuaState();
+        wax_fromInstance(L, self);
+        wax_fromInstance(L, param1);
+        wax_fromInstance(L, param2);
+        lua_call(L, 2, 0);
+    } copy] autorelease];
+}
+
 @end
 
 @implementation WaxFunction // Used to pass lua fuctions around
