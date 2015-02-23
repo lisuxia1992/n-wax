@@ -5,7 +5,7 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>9A532696-E04E-462F-98B5-33A1657109F3</string>
+	<string>59DA9F11-21FA-41E2-8F8A-3FAAAE3DE655</string>
 	<key>IDESourceControlProjectName</key>
 	<string>States</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
@@ -14,7 +14,7 @@
 		<string>github.com:felipejfc/wax_x86-64.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>examples/States/States.xcodeproj</string>
+	<string>examples/States (without wax.framework)/States.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>A3C9D68EA174E141FF32E3F6D2F72517D8FFE964</key>
