@@ -126,18 +126,20 @@ They all are! I can't stress this enough, anything that is written in Objective-
 Created By
 ----------
 Corey Johnson (probablycorey at gmail dot com)
+Felipe Cavalcanti (fjfcavalcanti at gmail dot com) ---> Made compatible with ARM64 devices, actual mantainer
 
 More
 ----
-* [Feature Requests? Bugs?](http://github.com/probablycorey/wax/issues) - Issue tracking and release planning.
+* [Feature Requests? Bugs?](http://github.com/felipejfc/wax_arm64/issues) - Issue tracking and release planning.
 * [Mailing List](http://groups.google.com/group/iphonewax)
-* [IRC: #wax](irc://chat.freenode.net/#wax) on http://freenode.net
-* Quick question or problem? IM **probablyCorey** on AIM
 
 Contribute
 ----------
 Fork it, change it, commit it, push it, send pull request; instant glory!
 
+The MIT License
+---------------
+Wax_Arm64 is Copyright (C) 2015 Felipe Cavalcanti See the file LICENSE for information of licensing and distribution.
 
 The MIT License
 ---------------
