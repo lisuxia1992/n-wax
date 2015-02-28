@@ -126,6 +126,7 @@ They all are! I can't stress this enough, anything that is written in Objective-
 Created By
 ----------
 Corey Johnson (probablycorey at gmail dot com)
+
 Felipe Cavalcanti (fjfcavalcanti at gmail dot com) ---> Made compatible with ARM64 devices, actual mantainer
 
 More
