@@ -1,34 +1,37 @@
-Wax X86_64
-----------
+[![Join the chat at https://gitter.im/felipejfc/wax_arm64](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/felipejfc/wax_arm64?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
+Wax for armv7/arm64
+-------------------
+
 Apple:
 ``
 Beginning on February 1, 2015 new iOS apps submitted to the App Store must include 64-bit support and be built with the iOS 8 SDK. Beginning June 1, 2015 app updates will also need to follow the same requirements. To enable 64-bit in your project, we recommend using the default Xcode build setting of “Standard architectures” to build a single binary with both 32-bit and 64-bit code.
 ``
 
 The original version of Wax is not compatible with x64 systems, which means that if you use
-wax in your application you'll have to update it to this fork's version where i've made some hacks to 
+wax in your application you'll have to update it to this fork's version where i've made some hacks to
 make it compatible with x64 systems.
 
 Wax
 ---
 
-Wax is a framework that lets you write native iPhone apps in 
-[Lua](http://www.lua.org/about.html). It bridges Objective-C and Lua using the 
+Wax is a framework that lets you write native iPhone apps in
+[Lua](http://www.lua.org/about.html). It bridges Objective-C and Lua using the
 Objective-C runtime. With Wax, **anything** you can do in Objective-C is **automatically**
 available in Lua! What are you waiting for, give it a shot!
 
 Why write iPhone apps in Lua?
 -----------------------------
 
-I love writing iPhone apps, but would rather write them in a dynamic language than in Objective-C. Here 
+I love writing iPhone apps, but would rather write them in a dynamic language than in Objective-C. Here
 are some reasons why many people prefer Lua + Wax over Objective-C...
 
 * Automatic Garbage Collection! Gone are the days of alloc, retain, and release.
 
-* Less Code! No more header files, no more static types, array and dictionary literals! 
+* Less Code! No more header files, no more static types, array and dictionary literals!
   Lua enables you to get more power out of less lines of code.
 
-* Access to every Cocoa, UITouch, Foundation, etc.. framework, if it's written in Objective-C, 
+* Access to every Cocoa, UITouch, Foundation, etc.. framework, if it's written in Objective-C,
   Wax exposes it to Lua automatically. All the frameworks you love are all available to you!
 
 * Super easy HTTP requests. Interacting with a REST webservice has never been eaiser
@@ -124,17 +127,20 @@ Created By
 ----------
 Corey Johnson (probablycorey at gmail dot com)
 
+Felipe Cavalcanti (fjfcavalcanti at gmail dot com) ---> Made compatible with ARM64 devices, actual mantainer
+
 More
 ----
-* [Feature Requests? Bugs?](http://github.com/probablycorey/wax/issues) - Issue tracking and release planning.
+* [Feature Requests? Bugs?](http://github.com/felipejfc/wax_arm64/issues) - Issue tracking and release planning.
 * [Mailing List](http://groups.google.com/group/iphonewax)
-* [IRC: #wax](irc://chat.freenode.net/#wax) on http://freenode.net
-* Quick question or problem? IM **probablyCorey** on AIM
 
 Contribute
 ----------
 Fork it, change it, commit it, push it, send pull request; instant glory!
 
+The MIT License
+---------------
+Wax_Arm64 is Copyright (C) 2015 Felipe Cavalcanti See the file LICENSE for information of licensing and distribution.
 
 The MIT License
 ---------------
