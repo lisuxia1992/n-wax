@@ -1,10 +1,7 @@
-//
-//  WaxFFIClosure.m
-//  
-//
-//  Created by Felipe Cavalcanti on 18/02/15.
-//
-//
+/*
+ Copyright (c) 2015 Felipe Cavalcanti (felipejfc)
+ See the file LICENSE for copying permission.
+ */
 
 #import "wax_ffi_closure.h"
 #import "wax_instance.h"

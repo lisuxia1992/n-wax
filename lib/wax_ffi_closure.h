@@ -1,10 +1,7 @@
-//
-//  WaxFFIClosure.h
-//  
-//
-//  Created by Felipe Cavalcanti on 18/02/15.
-//
-//
+/*
+ Copyright (c) 2015 Felipe Cavalcanti (felipejfc)
+ See the file LICENSE for copying permission.
+ */
 
 #import <Foundation/Foundation.h>
 #import "ffi.h"

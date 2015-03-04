@@ -6,6 +6,11 @@
 //  Copyright 2009 Probably Interactive. All rights reserved.
 //
 
+/*
+ Copyright (c) 2015 Felipe Cavalcanti (felipejfc)
+ See the file LICENSE for copying permission.
+ */
+
 #import "ProtocolLoader.h"
 
 #import "wax.h"

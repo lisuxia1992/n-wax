@@ -7,6 +7,11 @@
  *
  */
 
+/*
+ Copyright (c) 2015 Felipe Cavalcanti (felipejfc)
+ See the file LICENSE for copying permission.
+ */
+
 #import "wax_instance.h"
 #import "wax_class.h"
 #import "wax.h"
