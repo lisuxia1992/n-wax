@@ -112,11 +112,11 @@ Since Wax converts NSString, NSArray, NSDictionary and NSNumber to native Lua va
 Setup & Tutorials
 -----------------
 
-[Setting up Wax](https://github.com/probablycorey/wax/wiki/Installation)
+[Setting up Wax](https://github.com/felipejfc/n-wax/wiki/Installation)
 
-[How does Wax work?](https://github.com/probablycorey/wax/wiki/Overview)
+[How does Wax work?](https://github.com/felipejfc/n-wax/wiki/Overview)
 
-[Simple Twitter client in Wax](https://github.com/probablycorey/wax/wiki/Twitter)
+[Simple Twitter client in Wax](https://github.com/felipejfc/n-wax/wiki/Twitter-example)
 
 Which API's are included?
 -------------------------
