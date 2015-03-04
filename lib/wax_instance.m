@@ -632,7 +632,7 @@ static BOOL overrideMethod(lua_State *L, wax_instance_userdata *instanceUserdata
                 }
             }
             
-//            free(protocols);
+            free(protocols);
             
             currentClass = [currentClass superclass];
         }
@@ -720,7 +720,7 @@ static BOOL overrideMethod(lua_State *L, wax_instance_userdata *instanceUserdata
         } else {
             success = class_addMethod(klass, selector, closure, typeDescription) && class_addMethod(metaclass, selector, closure, typeDescription);
         }
-        //TODO free returntype
+        free (returnType);
     }
     else {
 		SEL possibleSelectors[2];
