@@ -1,10 +1,7 @@
-//
-//  wax_argument.m
-//  
-//
-//  Created by Felipe Cavalcanti on 22/02/15.
-//
-//
+/*
+ Copyright (c) 2015 Felipe Cavalcanti (felipejfc)
+ See the file LICENSE for copying permission.
+ */
 
 #import "wax_argument.h"
 

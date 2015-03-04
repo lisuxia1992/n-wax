@@ -7,6 +7,11 @@
  *
  */
 
+/*
+ Copyright (c) 2015 Felipe Cavalcanti (felipejfc)
+ See the file LICENSE for copying permission.
+ */
+
 #import <Foundation/Foundation.h>
 #import <objc/runtime.h>
 #import <objc/message.h>
