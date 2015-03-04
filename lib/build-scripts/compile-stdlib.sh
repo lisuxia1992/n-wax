@@ -7,7 +7,7 @@ lua "../build-scripts/luac.lua" wax wax.dat "../stdlib/" "../stdlib/init.lua" -L
 cat > "../wax_stdlib_64.h" <<EOF
 // DO NOT MODIFY
 // This is auto generated, it contains a compiled version of the wax stdlib
-#define WAX_STDLIB {$(hexdump -v -e '1/1 "%d,"' wax.dat)}
+#define WAX_STDLIB_64 {$(hexdump -v -e '1/1 "%d,"' wax.dat)}
 EOF
 
 # clean up

@@ -41,15 +41,15 @@ for i = executableIndex + 2, argCount do
  requireString = string.gsub(requireString, "/", ".")
  requireString = string.gsub(requireString, ".init$", "") -- if it is an init file within a directory... ignore it!
  if MODULE_NAME and #MODULE_NAME > 0 then requireString = MODULE_NAME .. "." .. requireString end
- 
+
  b = b.."t['"..requireString.."']=function()end;\n"
- arg[i]=string.sub(string.dump(assert(loadfile(arg[i]))), 13) -- string.sub Removes header from file 
+ arg[i]=string.sub(string.dump(assert(loadfile(arg[i]))), 13) -- string.sub Removes header from file
 end
 b = b.."t='"..MARK.."';\n"
 
 for i = 1, executableIndex do
   b = b.."(function()end)();\n"
-  arg[i]=string.sub(string.dump(assert(loadfile(arg[i]))), 13) -- string.sub Removes header from file  
+  arg[i]=string.sub(string.dump(assert(loadfile(arg[i]))), 13) -- string.sub Removes header from file
 end
 
 b = string.dump(assert(loadstring(b, NAME)))
