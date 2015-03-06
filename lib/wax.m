@@ -10,9 +10,6 @@
  Copyright (c) 2015 Felipe Cavalcanti (felipejfc)
  See the file LICENSE for copying permission.
  */
-
-#import "ProtocolLoader.h"
-
 #import "wax.h"
 #import "wax_class.h"
 #import "wax_instance.h"
@@ -22,7 +19,6 @@
 #import "wax_server.h"
 #import "wax_stdlib.h"
 #import "wax_stdlib_64.h"
-
 #import "lauxlib.h"
 #import "lobject.h"
 #import "lualib.h"

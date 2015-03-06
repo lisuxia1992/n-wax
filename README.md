@@ -40,6 +40,47 @@ are some reasons why many people prefer Lua + Wax over Objective-C...
 
 * Lua has a build in Regex-like pattern matching library.
 
+
+Usage
+-----
+
+#### Import Pod
+```pod n-wax```
+
+#### Create a ProtocolLoader.h file
+In your project you'll need to create a ProtocolLoader.h file that will contain the protocols that are not loaded dinamically by the system, example:
+```
+// Many protocols will work from wax out of the box. But some need to be preloaded.
+// If the protocol you are using isn't found, just add the protocol to this object
+//
+// This seems to be a bug, or there is a runtime method I'm unaware of
+
+#import <Foundation/Foundation.h>
+
+@interface ProtocolLoader : NSObject <UIApplicationDelegate, UIWebViewDelegate, UIActionSheetDelegate, UIAlertViewDelegate, UISearchBarDelegate, UITextViewDelegate, UITabBarControllerDelegate> {}
+@end
+
+@implementation ProtocolLoader
+@end
+```
+
+You'll know when you need to put a protocol into this list when you use one and it doesn't work, there will appear a message in your console like that:
+```
+Could not find protocol named 'UIApplicationDelegate'
+Hint: Sometimes the runtime cannot automatically find a protocol. Try adding it (via xCode) to the file ProtocolLoader.h
+```
+
+The above ProtocolLoader.h file would fix this message.
+
+#### Import your protocol header and then wax header
+```
+#include "ProtocolLoader.h"
+#include "wax.h"
+```
+
+#### Start using wax
+Read the [wiki](https://github.com/felipejfc/n-wax/wiki) for more information on how to use wax!
+
 Examples
 --------
 

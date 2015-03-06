@@ -1,0 +1,16 @@
+PODS:
+  - n-wax (1.0):
+    - n-wax/no-arc (= 1.0)
+  - n-wax/no-arc (1.0)
+
+DEPENDENCIES:
+  - n-wax (from `../`)
+
+EXTERNAL SOURCES:
+  n-wax:
+    :path: ../
+
+SPEC CHECKSUMS:
+  n-wax: 940209fa1db59654812e8df432b81135b8985a55
+
+COCOAPODS: 0.35.0
