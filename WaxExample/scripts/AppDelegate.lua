@@ -5,6 +5,6 @@ function applicationDidFinishLaunching(self, application)
   self.window = UIWindow:initWithFrame(frame)
   self.window:setBackgroundColor(UIColor:whiteColor())
   local view = ViewController:init()
-  self.window:addSubview(view)
+  self.window:setRootViewController(view)
   self.window:makeKeyAndVisible()
 end
