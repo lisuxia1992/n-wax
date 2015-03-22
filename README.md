@@ -140,7 +140,7 @@ Fork it, change it, commit it, push it, send pull request; instant glory!
 
 The MIT License
 ---------------
-Wax_Arm64 is Copyright (C) 2015 Felipe Cavalcanti See the file LICENSE for information of licensing and distribution.
+n-wax is Copyright (C) 2015 Felipe Cavalcanti See the file LICENSE for information of licensing and distribution.
 
 The MIT License
 ---------------
