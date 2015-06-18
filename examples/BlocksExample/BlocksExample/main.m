@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "wax.h"
-#import "ProtocolLoader.h"
 
 int main(int argc, char * argv[]) {
     @autoreleasepool {

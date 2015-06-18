@@ -1,6 +1,8 @@
 //  Created by ProbablyInteractive.
 //  Copyright 2009 Probably Interactive. All rights reserved.
 
+#import "ProtocolLoader.h"
+
 #import <Foundation/Foundation.h>
 #import "lua.h"
 
