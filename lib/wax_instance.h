@@ -26,7 +26,6 @@ struct __va_list_tag {
     void *overflow_arg_area;
     void *reg_save_area;
 };
-typedef struct __va_list_tag __va_list_tag;
 
 typedef struct _wax_instance_userdata {
     id instance;
