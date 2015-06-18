@@ -10,6 +10,5 @@ function applicationDidFinishLaunching(self, application)
   self.window:makeKeyAndVisible()
 
   self.viewController = ViewController:init()
-
   self.window:addSubview(self.viewController:view())
 end
