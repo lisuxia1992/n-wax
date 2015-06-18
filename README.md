@@ -1,4 +1,4 @@
-[![Join the chat at https://gitter.im/felipejfc/wax_arm64](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/felipejfc/wax_arm64?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Join the chat at https://gitter.im/felipejfc/n-wax](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/felipejfc/n-wax?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 Wax for armv7/arm64
 -------------------
@@ -140,7 +140,7 @@ Fork it, change it, commit it, push it, send pull request; instant glory!
 
 The MIT License
 ---------------
-Wax_Arm64 is Copyright (C) 2015 Felipe Cavalcanti See the file LICENSE for information of licensing and distribution.
+n-wax is Copyright (C) 2015 Felipe Cavalcanti See the file LICENSE for information of licensing and distribution.
 
 The MIT License
 ---------------
